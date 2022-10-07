@@ -7,3 +7,12 @@
 .navbar-color {
     background-color: #272d31;
 }
+
+.form-control:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6) !important;
+}
+
+.form-control:hover {
+    border-color: red !important;
+}
+
