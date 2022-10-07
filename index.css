@@ -1,0 +1,9 @@
+#menu li a {
+    color: gray;
+}
+#menu li a:hover {
+    color: red;
+}
+.navbar-color {
+    background-color: #272d31;
+}
