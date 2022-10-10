@@ -16,3 +16,18 @@
     border-color: red !important;
 }
 
+.footer_backround {
+    background-color: #272d31;
+}
+
+footer {
+    background-color: #272d31;
+    padding: 66px;
+}
+footer ul li .nav-link {
+    color: gray;
+}
+footer ul li .nav-link:hover {
+    color: red;
+}
+
