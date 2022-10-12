@@ -42,7 +42,6 @@ body {
 
 }
 
-
 .modal-content {
     background-color: #272d31;
 }
@@ -54,7 +53,15 @@ body {
     max-width: 250px;
     height: auto;
 }
+.carousel-caption {
+    top: 10%;
+    bottom: auto;
+}
 
+.carousel-item img {
+    object-fit: cover;
+    max-height: 500px;
+}
 
 ::-webkit-scrollbar {
     width: 10px;
