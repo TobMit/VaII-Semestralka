@@ -58,6 +58,13 @@ body {
     bottom: auto;
 }
 
+#sugestedMoviesSerials .col-md-2 {
+
+    min-width: 200px;
+    max-height: 340px;
+    max-width: 220px;
+}
+
 .carousel-item img {
     object-fit: cover;
     max-height: 500px;
