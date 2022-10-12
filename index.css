@@ -49,13 +49,17 @@ body {
     margin-top: 80px;
 }
 
-#stranka-Body .row img {
+.carousel-inner div div img {
     max-width: 250px;
     height: auto;
 }
 .carousel-caption {
     top: 10%;
     bottom: auto;
+}
+
+.mineHeader {
+    background-color: rgba(39,45,49,0.5);
 }
 
 #sugestedMoviesSerials .col-md-2 {
