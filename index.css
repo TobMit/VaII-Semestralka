@@ -76,12 +76,14 @@ body {
     display: block;
 
 }
+
 #sugestedMoviesSerials .col-md-2:hover {
     transform: scale(1.3);
     transform-origin: 50% 50%;
     background-color: #272d31;
 
 }
+
 
 .carousel-item img {
     object-fit: cover;
