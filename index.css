@@ -63,6 +63,24 @@ body {
     min-width: 200px;
     max-height: 340px;
     max-width: 220px;
+    border-color: #dc3545 !important;
+}
+
+#sugestedMoviesSerials .col-md-2:hover {
+    border-color: red !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px red!important;
+
+}
+#sugestedMoviesSerials .col-md-2 {
+    transition: transform .4s;
+    display: block;
+
+}
+#sugestedMoviesSerials .col-md-2:hover {
+    transform: scale(1.3);
+    transform-origin: 50% 50%;
+    background-color: #272d31;
+
 }
 
 .carousel-item img {
