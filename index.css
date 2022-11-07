@@ -38,9 +38,18 @@ body {
 
 }
 
+.dropdown-menu {
+    background-color: #272d31;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #49585d;
+}
+
 .modal-content {
     background-color: #272d31;
 }
+
 #stranka-Body {
     margin-top: 80px;
 }
