@@ -10,6 +10,8 @@ class TestController extends AControllerBase
 
     public function index(): Response
     {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(3);
         return $this->html();
     }
 

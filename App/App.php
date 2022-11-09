@@ -5,6 +5,7 @@ namespace App;
 use App\Config\Configuration;
 use App\Core\IAuthenticator;
 use App\Core\DB\Connection;
+use App\Core\IPageDetector;
 use App\Core\Request;
 use App\Core\Responses\RedirectResponse;
 use App\Core\Responses\Response;
@@ -29,6 +30,8 @@ class App
 
     private ?IAuthenticator $auth;
 
+    private ?IPageDetector $pageId;
+
     /**
      * App constructor
      */
@@ -43,6 +46,13 @@ class App
             $this->auth = new (Configuration::AUTH_CLASS)();
         } else {
             $this->auth = null;
+        }
+
+        // Check if there is a page detector
+        if (defined('\\App\\Config\\Configuration::PAGE_DETECTOR_CLASS')) {
+            $this->pageId = new (Configuration::PAGE_DETECTOR_CLASS);
+        } else {
+            $this->pageId = null;
         }
     }
 
@@ -109,5 +119,10 @@ class App
     public function getAuth(): ?IAuthenticator
     {
         return $this->auth;
+    }
+
+    public function getPageDetecotr(): ?IPageDetector
+    {
+        return $this->pageId;
     }
 }

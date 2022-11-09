@@ -28,6 +28,8 @@ class HomeController extends AControllerBase
      */
     public function index(): Response
     {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(1);
         return $this->html();
     }
 
@@ -37,6 +39,8 @@ class HomeController extends AControllerBase
      */
     public function contact(): Response
     {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(2);
         return $this->html();
     }
 }

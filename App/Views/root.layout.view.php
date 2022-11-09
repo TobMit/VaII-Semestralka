@@ -1,6 +1,8 @@
 <?php
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
+/** @var \App\Core\IPageDetector $pageId */
+
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -21,17 +23,21 @@
 <nav class="navbar navbar-expand-sm bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="?c=home">
-            <img src="public/images/vaiicko_logo.png" title="<?= \App\Config\Configuration::APP_NAME ?>"
-                 title="<?= \App\Config\Configuration::APP_NAME ?>">
+            <img src="public/images/vaiicko_logo.png" title="<?= \App\Config\Configuration::APP_NAME ?>">
         </a>
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link" href="?c=home&a=contact">Kontakt</a>
+                <a class="nav-link <?php if ($pageId->getPageId() == 1) { ?> text-success <?php }?>" href="?c=home">Domov</a>
             </li>
         </ul>
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link" href="?c=test&a=index">Test</a>
+                <a class="nav-link <?php if ($pageId->getPageId() == 2) { ?> text-success <?php }?> " href="?c=home&a=contact">Kontakt</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link <?php if ($pageId->getPageId() == 3) { ?> text-success <?php }?> " href="?c=test&a=index">Test</a>
             </li>
         </ul>
         <?php if ($auth->isLogged()) { ?>
