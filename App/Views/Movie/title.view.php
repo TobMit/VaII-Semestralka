@@ -1,3 +1,6 @@
+<?php
+/** @var \App\Core\IAuthenticator $auth */
+?>
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="row  border-danger border-bottom pb-3 m-1">
         <div class="posterImage col-md-4">
@@ -9,9 +12,11 @@
             <h4>Category|Category|category</h4>
             <p>Druation: ...</p>
             <h5>Actors: ...</h5>
-            <div class="d-grid  col-8">
-                <button type="button" class="btn  btn-outline-danger me-2 text-white"  data-bs-target="#loginModal" data-bs-toggle="Wath">Seen</button>
-            </div>
+            <?php if ($auth->isLogged()) { ?>
+                <div class="d-grid  col-8">
+                    <button type="button" class="btn  btn-outline-danger me-2 text-white"  data-bs-target="#loginModal" data-bs-toggle="Wath">Seen</button>
+                </div>
+            <?php }?>
         </div>
     </div>
 

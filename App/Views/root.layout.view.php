@@ -2,6 +2,7 @@
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\IPageDetector $pageDetecgor */
+/** @var Array $data */
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -50,7 +51,7 @@
                             <ul class="dropdown-menu ropdown-menu-end text-small shadow">
                                 <li><a class="dropdown-item text-white" href="#">Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-white" href="#">Sign out</a></li>
+                                <li><a class="dropdown-item text-white" href="?c=auth&a=logout">Sign out</a></li>
                             </ul>
                         </div>
                     <?php }?>
@@ -109,17 +110,19 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
+
                     <div class="modal-body p-5 pt-0">
-                        <form class="">
+                        <form class="form-sign" method="post" action="<?= \App\Config\Configuration::LOGIN_URL ?>">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control rounded-3 text-bg-dark " id="floatingInputLogin" placeholder="name@example.com">
-                                <label class="text-white" for="floatingInputLogin">Email address or user name</label>
+<!--                                <input type="email" class="form-control rounded-3 text-bg-dark " id="floatingInputLogin" placeholder="name@example.com">-->
+                                <input name="login" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
+                                <label class="text-white" for="login">Email address or user name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control rounded-3 text-bg-dark" id="floatingPasswordLogin" placeholder="Password">
-                                <label class="text-white" for="floatingPasswordLogin">Password</label>
+                                <input name="password" type="password" class="form-control rounded-3 text-bg-dark" id="password" placeholder="Password">
+                                <label class="text-white" for="password">Password</label>
                             </div>
-                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Sign up</button>
+                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit" name="submit">Login</button>
                         </form>
                     </div>
                 </div>
