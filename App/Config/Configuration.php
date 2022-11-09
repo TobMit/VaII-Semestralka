@@ -4,6 +4,7 @@ namespace App\Config;
 
 use App\Auth\DummyAuthenticator;
 use App\Page\PageDetector;
+use App\Api\ApiKey;
 
 /**
  * Class Configuration
@@ -29,4 +30,5 @@ class Configuration
     public const AUTH_CLASS = DummyAuthenticator::class;
 
     public const PAGE_DETECTOR_CLASS = PageDetector::class;
+    public const API_KEY = 'api_key=' . ApiKey::API_KEY;
 }
