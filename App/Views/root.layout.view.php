@@ -29,7 +29,7 @@
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" id="menu">
                         <li><a href="?c=home" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 1) { ?> text-white <?php } ?> ">Home</a></li>
                         <li><a href="?c=movie&a=films" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 2) { ?> text-white <?php } ?> ">Films</a></li>
-                        <li><a href="?c=movie$a=serials" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 3) { ?> text-white <?php } ?> ">Serials</a></li>
+                        <li><a href="?c=movie&a=serials" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 3) { ?> text-white <?php } ?> ">Serials</a></li>
                         <li><a href="?c=home&a=about" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 4) { ?> text-white <?php } ?> ">About</a></li>
                     </ul>
 
@@ -127,8 +127,8 @@
 
             <ul class="nav col-md-4 justify-content-end">
                 <li class="nav-item"><a href="?c=home" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 1) { ?> text-white <?php } ?> ">Home</a></li>
-                <li class="nav-item"><a href="?c=movie$a=films" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 2) { ?> text-white <?php } ?> ">Films</a></li>
-                <li class="nav-item"><a href="?c=movie$a=serials" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 3) { ?> text-white <?php } ?> ">Serial</a></li>
+                <li class="nav-item"><a href="?c=movie&a=films" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 2) { ?> text-white <?php } ?> ">Films</a></li>
+                <li class="nav-item"><a href="?c=movie&a=serials" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 3) { ?> text-white <?php } ?> ">Serial</a></li>
                 <li class="nav-item"><a href="?c=home&a=about" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 4) { ?> text-white <?php } ?> ">About</a></li>
             </ul>
         </footer>

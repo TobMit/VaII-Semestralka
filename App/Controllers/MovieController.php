@@ -23,4 +23,10 @@ class MovieController extends AControllerBase
         $pageId->setActualPage(2);
         return $this->html();
     }
+    public function serials(): Response
+    {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(3);
+        return $this->html();
+    }
 }
