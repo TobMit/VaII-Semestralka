@@ -29,6 +29,11 @@
                 <a class="nav-link" href="?c=home&a=contact">Kontakt</a>
             </li>
         </ul>
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="?c=test&a=index">Test</a>
+            </li>
+        </ul>
         <?php if ($auth->isLogged()) { ?>
             <span class="navbar-text">Prihlásený používateľ: <b><?= $auth->getLoggedUserName() ?></b></span>
             <ul class="navbar-nav ms-auto">
