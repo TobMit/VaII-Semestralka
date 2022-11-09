@@ -43,4 +43,11 @@ class HomeController extends AControllerBase
         $pageId->setActualPage(2);
         return $this->html();
     }
+
+    public function about(): Response
+    {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(4);
+        return $this->html();
+    }
 }
