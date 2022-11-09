@@ -102,19 +102,43 @@ body {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px red!important;
 }
 
-/*css z about page*/
+/* css z about page */
 #logo img{
     height: 400px;
     width: 400px;
     object-fit: fill;
 }
 
-
 .carousel-item img {
     object-fit: cover;
     max-height: 500px;
 }
 
+/* koniec css z about page */
+
+/* css z titleMovieTemplate */
+.posterImage {
+    display: block;
+    height: 500px;
+    width: 390px;
+    min-width: 390px;
+    object-fit: fill;
+    transition: transform .4s;
+}
+
+.posterImage:hover {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px red;
+    transform: scale(1.2);
+    transform-origin: 10% 10%;
+}
+
+.popis {
+    margin-left: 3rem;
+    margin-top: 7rem;
+}
+/* konic css z titleMOvieTemplate */
+
+/* scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
 }
