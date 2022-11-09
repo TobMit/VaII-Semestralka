@@ -39,7 +39,7 @@ class ViewResponse extends Response
         $layout = Configuration::ROOT_LAYOUT;
         $data = $this->data;
         $auth = $this->app->getAuth();
-        $pageId = $this->app->getPageDetecotr();
+        $pageDetecgor = $this->app->getPageDetecotr();
 
         require "App" . DIRECTORY_SEPARATOR . "Views" . DIRECTORY_SEPARATOR . $this->viewName . ".view.php";
 
