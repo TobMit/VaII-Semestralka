@@ -116,7 +116,7 @@
         </div>
 
         <main class="container text-white mb-4" id="stranka-Body">
-
+            <?= $contentHTML ?>
 
         </main>
 
