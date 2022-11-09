@@ -4,7 +4,6 @@
 /** @var \App\Core\IPageDetector $pageDetecgor */
 ?>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en" class="h-100">
     <head>
         <meta charset="UTF-8">
