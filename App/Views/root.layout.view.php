@@ -37,10 +37,23 @@
                         <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
                     </form>
 
-                    <div class="text-end">
-                        <button type="button" class="btn btn-outline-danger me-2 text-white" data-bs-target="#loginModal" data-bs-toggle="modal">Login</button>
-                        <button type="button" class="btn btn-success" data-bs-target="#singUpModal" data-bs-toggle="modal">Sign-up</button>
-                    </div>
+                    <?php if (!$auth->isLogged()) { ?>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-outline-danger me-2 text-white" data-bs-target="#loginModal" data-bs-toggle="modal">Login</button>
+                            <button type="button" class="btn btn-success" data-bs-target="#singUpModal" data-bs-toggle="modal">Sign-up</button>
+                        </div>
+                    <?php } else { ?>
+                        <div class="dropdown">
+                            <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu ropdown-menu-end text-small shadow">
+                                <li><a class="dropdown-item text-white" href="#">Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-white" href="#">Sign out</a></li>
+                            </ul>
+                        </div>
+                    <?php }?>
                 </div>
             </div>
 
