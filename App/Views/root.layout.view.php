@@ -49,7 +49,8 @@
                                 <img src="https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu ropdown-menu-end text-small shadow">
-                                <li><a class="dropdown-item text-white" href="#">Profile</a></li>
+                                <li><a class="dropdown-item text-white" href="?c=user">Profile</a></li>
+                                <li><a class="dropdown-item text-white" href="#">Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item text-white" href="?c=auth&a=logout">Log out</a></li>
                             </ul>
