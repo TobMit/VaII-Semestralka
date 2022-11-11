@@ -51,7 +51,7 @@
                             <ul class="dropdown-menu ropdown-menu-end text-small shadow">
                                 <li><a class="dropdown-item text-white" href="#">Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-white" href="?c=auth&a=logout">Sign out</a></li>
+                                <li><a class="dropdown-item text-white" href="?c=auth&a=logout">Log out</a></li>
                             </ul>
                         </div>
                     <?php }?>
