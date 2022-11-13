@@ -131,7 +131,25 @@
         </div>
 
         <main class="container text-white mb-4" id="stranka-Body">
-            <?= $contentHTML ?>
+            <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
+                <div class="row ps-1">
+                    <h1>Settings</h1>
+                </div>
+                <div class="row border-danger pb-3 m-1 col-4">
+                    <div class="col-md-4 navbar-color rounded-2">
+                        <ul class="nav nav-pills flex-column mb-auto" id="settings-menu">
+                            <li class="nav-item"> <a href="#" class="nav-link text-white">Email</a> </li>
+                            <li class="nav-item"> <a href="#" class="nav-link text-white">Password</a> </li>
+                            <li class="nav-item"> <a href="#" class="nav-link text-white">Collection</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <?= $contentHTML ?>
+
+                    </div>
+                </div>
+
+            </div>
 
         </main>
 

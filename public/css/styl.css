@@ -29,6 +29,12 @@ footer ul li .nav-link {
 footer ul li .nav-link:hover {
     color: red;
 }
+
+/* settings */
+#settings-menu .nav-item .nav-link:hover{
+    color: red !important;
+}
+
 body {
     background-image: url("https://kukaj.io/img/bgTINY.png");
     background-attachment: fixed;

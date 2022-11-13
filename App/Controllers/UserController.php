@@ -12,4 +12,9 @@ class UserController extends AControllerBase
     {
         return $this->html();
     }
+
+    public function settings() : Response
+    {
+        return $this->html();
+    }
 }
