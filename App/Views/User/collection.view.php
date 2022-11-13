@@ -3,8 +3,9 @@ $layout = 'settings';
 ?>
 <h3>Collection</h3>
 <form method="post" class="">
-    <label class="text-white" for="login">Old email</label>
-    <input name="login" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
-    <label class="text-white" for="login">New email</label>
-    <input name="login" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
+    <div class="mb-1">
+        work in progres
+    </div>
+    <small class="text-muted">All changes will be saved</small>
+    <button class="w-100 mb-2 btn  rounded-3 btn-danger" type="submit">Save</button>
 </form>
