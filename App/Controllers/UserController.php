@@ -13,7 +13,15 @@ class UserController extends AControllerBase
         return $this->html();
     }
 
-    public function settings() : Response
+    public function email() : Response
+    {
+        return $this->html();
+    }
+    public function password() : Response
+    {
+        return $this->html();
+    }
+    public function collection() : Response
     {
         return $this->html();
     }

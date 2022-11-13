@@ -50,7 +50,7 @@
                             </a>
                             <ul class="dropdown-menu ropdown-menu-end text-small shadow">
                                 <li><a class="dropdown-item text-white" href="?c=user">Profile</a></li>
-                                <li><a class="dropdown-item text-white" href="?c=user&a=settings">Settings</a></li>
+                                <li><a class="dropdown-item text-white" href="?c=user&a=email">Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item text-white" href="?c=auth&a=logout">Log out</a></li>
                             </ul>

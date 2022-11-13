@@ -138,9 +138,9 @@
                 <div class="row border-danger pb-3 m-1 col-4">
                     <div class="col-md-4 navbar-color rounded-2">
                         <ul class="nav nav-pills flex-column mb-auto" id="settings-menu">
-                            <li class="nav-item"> <a href="#" class="nav-link text-white">Email</a> </li>
-                            <li class="nav-item"> <a href="#" class="nav-link text-white">Password</a> </li>
-                            <li class="nav-item"> <a href="#" class="nav-link text-white">Collection</a> </li>
+                            <li class="nav-item"> <a href="?c=user&a=email" class="nav-link text-white">Email</a> </li>
+                            <li class="nav-item"> <a href="?c=user&a=password" class="nav-link text-white">Password</a> </li>
+                            <li class="nav-item"> <a href="?c=user&a=collection" class="nav-link text-white">Collection</a> </li>
                         </ul>
                     </div>
                     <div class="col-md-8">
