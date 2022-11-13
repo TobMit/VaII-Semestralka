@@ -47,7 +47,7 @@
         <h1 class="text-center" >Your Watch-list</h1>
     </div>
 </div>
-<div class="row justify-content-evenly" id="sugestedMoviesSerials">
+<div class="row justify-content-evenly" id="sugestedCollection">
 
     <div class="col-md-2 border rounded-4 m-1 ">
         <a href="?c=movie&a=title">

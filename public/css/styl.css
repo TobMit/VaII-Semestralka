@@ -80,7 +80,8 @@ body {
     background-color: rgba(39,45,49,0.5);
 }
 
-#sugestedMoviesSerials .col-md-2 {
+/* #suggestedCollection len dočastne */
+#sugestedMoviesSerials .col-md-2, #sugestedCollection {
 
     min-width: 200px;
     max-height: 340px;
