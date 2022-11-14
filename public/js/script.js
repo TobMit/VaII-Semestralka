@@ -27,6 +27,8 @@ function getMovies(url) {
                 //aby sme nemuseli parsovať všetko iba result object
                 showMovies(data.results);
             });
+        } else {
+            alert("We run into problem, try later!");
         }
     });
 }
@@ -59,8 +61,58 @@ function showMovies(data) {
  */
 function findMovieById(id, type) {
     if (type === "movie") {
-        fetch(BASE_URL + FILM_URL + id + "?" + API_KEY_URL).then(res => res.json()).then(data => console.log(data));
+        url = BASE_URL + FILM_URL + id + "?" + API_KEY_URL;
     } else {
-        fetch(BASE_URL + SERIAL_URL + id + "?" + API_KEY_URL).then(res => res.json()).then(data => console.log(data));
+        url = BASE_URL + SERIAL_URL + id + "?" + API_KEY_URL;
     }
+    fetch(url).then(res => {
+        const {status, ok} = res;
+        if (status === 200 && ok) {
+            res.json().then(data =>{
+                //console.log(data);
+                if (type === "movie") {
+                    showFilmInfo(data);
+                } else {
+                    showSerialInfo(data, id);
+                }
+            });
+        } else {
+            alert("We run into problem, try later!");
+        }
+    });
+}
+
+function showSerialInfo(data, id) {
+    console.log(data);
+    const {overview, poster_path, name, number_of_seasons, number_of_episodes,first_air_date, genres } = data;
+
+    const posterElement = document.getElementById("moviePoster");
+    posterElement.innerHTML += `<img class="posterImage col-md-4 rounded-4" src="${IMG_URL+poster_path}" alt="${name}">`;
+
+    const movieNameElement = document.getElementById("movieName");
+    movieNameElement.innerHTML += `${name}`;
+
+    const releaseElement = document.getElementById("release");
+    releaseElement.innerHTML += `${first_air_date}`;
+
+    const categoryElement = document.getElementById("category");
+    let first = true;
+    for (const genre of genres) {
+        if (first) {
+            first = false;
+            categoryElement.innerHTML += `${genre.name}`;
+        } else {
+            categoryElement.innerHTML += ` | ${genre.name}`;
+        }
+
+    }
+
+    const aditionalInformationElement = document.getElementById("aditionalInformation");
+    aditionalInformationElement.innerHTML += `<h5>Number of Season: ${number_of_seasons} </h5> \n` +
+                                            `<p>Number of episodes: ${number_of_episodes}</p>`;
+
+    const overviewElement = document.getElementById("overview");
+    overviewElement.innerHTML += `${overview}`;
+
+    getMovies(BASE_URL + SERIAL_URL + id + "/similar?" + API_KEY_URL);
 }
