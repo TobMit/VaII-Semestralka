@@ -5,10 +5,12 @@
 const API_KEY_URL = 'api_key=' + API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 const POP_MOVIE = '/trending/all/week?';
+const POP_FILM = '/trending/movie/week?';
+const POP_SERIAL = '/trending/tv/week?';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 // BASE_REQUEST = BASE_URL + "request" + API_KEY
 
-getMovies(BASE_URL+POP_MOVIE+API_KEY_URL);
+//getMovies(BASE_URL+POP_MOVIE+API_KEY_URL);
 
 function getMovies(url) {
     //zíkame url request, response uložime do res.json a potom prístpime k dátam

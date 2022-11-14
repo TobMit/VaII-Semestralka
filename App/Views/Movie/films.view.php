@@ -1,3 +1,4 @@
+<script> getMovies(BASE_URL+POP_FILM+API_KEY_URL) </script>
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="border-danger border-bottom">
         <h1>List of Films</h1>
