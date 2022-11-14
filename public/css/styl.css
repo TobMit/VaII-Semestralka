@@ -84,7 +84,7 @@ body {
 #sugestedMoviesSerials .col-md-2, #sugestedCollection {
 
     min-width: 200px;
-    max-height: 340px;
+    max-height: 370px;
     max-width: 220px;
     border-color: #dc3545 !important;
 }
