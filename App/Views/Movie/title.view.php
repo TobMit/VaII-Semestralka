@@ -1,6 +1,8 @@
 <?php
+/** @var Array $data */
 /** @var \App\Core\IAuthenticator $auth */
 ?>
+<script> findMovieById("<?php echo $data[0]?>", "<?php echo $data[1]?>" ) </script>
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="row  border-danger border-bottom pb-3 m-1">
         <div class="posterImage col-md-4">

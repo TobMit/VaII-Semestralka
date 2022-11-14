@@ -33,6 +33,7 @@ class MovieController extends AControllerBase
     {
         $pageId = $this->app->getPageDetecotr();
         $pageId->setActualPage(0);
-        return $this->html();
+        $tmpArray = array($this->request()->getValue('id'), $this->request()->getValue('type'));
+        return $this->html($tmpArray,"title");
     }
 }
