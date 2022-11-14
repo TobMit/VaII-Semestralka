@@ -7,6 +7,8 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const POP_MOVIE = '/trending/all/week?';
 const POP_FILM = '/trending/movie/week?';
 const POP_SERIAL = '/trending/tv/week?';
+const FILM_URL = '/movie/'
+const TV_URL = '/tv/'
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 // BASE_REQUEST = BASE_URL + "request" + API_KEY
 
@@ -14,12 +16,19 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 function getMovies(url) {
     //zíkame url request, response uložime do res.json a potom prístpime k dátam
-    fetch(url).then(res => res.json()).then(data => {
-        console.log(data);
+    fetch(url).then(res => {
+        //console.log(res);
+        const {status, ok} = res;
+        // kontrolujem či je response v pohode
+        if (status === 200 && ok) {
+            res.json().then(data =>{
+                //console.log(data);
 
-        //aby sme nemuseli parsovať všetko iba result object
-        showMovies(data.results);
-    })
+                //aby sme nemuseli parsovať všetko iba result object
+                showMovies(data.results);
+            });
+        }
+    });
 }
 
 function showMovies(data) {
@@ -42,4 +51,8 @@ function showMovies(data) {
                                 `        </div>\n` +
                                 `    </div> `;
     })
+}
+
+function findMovieById(id) {
+
 }
