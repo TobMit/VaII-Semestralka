@@ -14,7 +14,7 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 //getMovies(BASE_URL+POP_MOVIE+API_KEY_URL);
 
-function getMovies(url) {
+function getMovies(url, type) {
     //zíkame url request, response uložime do res.json a potom prístpime k dátam
     fetch(url).then(res => {
         //console.log(res);
@@ -25,7 +25,7 @@ function getMovies(url) {
                 //console.log(data);
 
                 //aby sme nemuseli parsovať všetko iba result object
-                showMovies(data.results);
+                showMovies(data.results, type);
             });
         } else {
             alert("We run into problem, try later! GetMovie");
@@ -33,7 +33,7 @@ function getMovies(url) {
     });
 }
 
-function showMovies(data) {
+function showMovies(data, type) {
     data.forEach(movie => {
         // získame tieto informácie z fore cyklu a vyhľadávame ich podla názvu v json
         const {title, poster_path, name, id, media_type } = movie;
@@ -43,9 +43,12 @@ function showMovies(data) {
         } else {
             nazov = title;
         }
+        if (typeof media_type !== "undefined") {
+            type = media_type
+        }
         const movieElement = document.getElementById("sugestedMoviesSerials");
         movieElement.innerHTML += `<div class="col-md-2 border rounded-4 m-1 ">\n` +
-                                `        <a href="?c=movie&a=title&id=${id}&type=${media_type}">\n` +
+                                `        <a href="?c=movie&a=title&id=${id}&type=${type}">\n` +
                                 `            <img class="image w-100 rounded-4 mt-3" src="${IMG_URL+poster_path}" alt="${nazov}">\n` +
                                 `        </a>\n` +
                                 `        <div class="nazov text-center text-white">\n` +
@@ -99,44 +102,28 @@ function showSerialInfo(data, id) {
     //console.log(data);
     const {overview, poster_path, name, number_of_seasons, number_of_episodes,first_air_date } = data;
 
-    const posterElement = document.getElementById("moviePoster");
-    posterElement.innerHTML += `<img class="posterImage col-md-4 rounded-4" src="${IMG_URL+poster_path}" alt="${name}">`;
-
-    const movieNameElement = document.getElementById("movieName");
-    movieNameElement.innerHTML += `${name}`;
-
-    const releaseElement = document.getElementById("release");
-    releaseElement.innerHTML += `${first_air_date}`;
-
-
+    document.getElementById("moviePoster").innerHTML += `<img class="posterImage col-md-4 rounded-4" src="${IMG_URL+poster_path}" alt="${name}">`;
+    document.getElementById("movieName").innerHTML += `${name}`;
+    document.getElementById("release").innerHTML += `${first_air_date}`;
     const aditionalInformationElement = document.getElementById("aditionalInformation");
     aditionalInformationElement.innerHTML += `<h5>Number of Season: ${number_of_seasons} </h5> \n` +
                                             `<p>Number of episodes: ${number_of_episodes}</p>`;
+    document.getElementById("overview").innerHTML += `${overview}`;
 
-    const overviewElement = document.getElementById("overview");
-    overviewElement.innerHTML += `${overview}`;
-
-    getMovies(BASE_URL + SERIAL_URL + id + "/similar?" + API_KEY_URL);
+    getMovies(BASE_URL + SERIAL_URL + id + "/similar?" + API_KEY_URL, "tv");
 }
 
 function showFilmInfo(data, id) {
-    console.log(data);
+    //console.log(data);
     const {overview, poster_path, title, runtime, release_date,buget } = data;
 
-    const posterElement = document.getElementById("moviePoster");
-    posterElement.innerHTML += `<img class="posterImage col-md-4 rounded-4" src="${IMG_URL+poster_path}" alt="${name}">`;
-
-    const movieNameElement = document.getElementById("movieName");
-    movieNameElement.innerHTML += `${title}`;
-
-    const releaseElement = document.getElementById("release");
-    releaseElement.innerHTML += `${release_date}`;
-
+    document.getElementById("moviePoster").innerHTML += `<img class="posterImage col-md-4 rounded-4" src="${IMG_URL+poster_path}" alt="${title}">`;
+    document.getElementById("movieName").innerHTML += `${title}`;
+    document.getElementById("release").innerHTML += `${release_date}`;
     const aditionalInformationElement = document.getElementById("aditionalInformation");
     aditionalInformationElement.innerHTML += `<h5>Runtime: ${Math.floor(runtime/60)}h ${runtime-(Math.floor(runtime/60)*60)}m </h5> \n` +
                                             `<p>Buget: ${buget}</p>`;
-
     document.getElementById("overview").innerHTML += `${overview}`;
 
-    getMovies(BASE_URL + FILM_URL + id + "/similar?" + API_KEY_URL);
+    getMovies(BASE_URL + FILM_URL + id + "/similar?" + API_KEY_URL, "movie");
 }
