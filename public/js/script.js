@@ -8,7 +8,7 @@ const POP_MOVIE = '/trending/all/week?';
 const POP_FILM = '/trending/movie/week?';
 const POP_SERIAL = '/trending/tv/week?';
 const FILM_URL = '/movie/'
-const TV_URL = '/tv/'
+const SERIAL_URL = '/tv/'
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 // BASE_REQUEST = BASE_URL + "request" + API_KEY
 
@@ -34,7 +34,7 @@ function getMovies(url) {
 function showMovies(data) {
     data.forEach(movie => {
         // získame tieto informácie z fore cyklu a vyhľadávame ich podla názvu v json
-        const {title, poster_path, name } = movie;
+        const {title, poster_path, name, id, media_type } = movie;
         //filmi a serialy majú rôzne označenie názvu tak toto to rieši
         if (typeof title ==="undefined") {
             nazov = name;
@@ -43,7 +43,7 @@ function showMovies(data) {
         }
         const movieElement = document.getElementById("sugestedMoviesSerials");
         movieElement.innerHTML += `<div class="col-md-2 border rounded-4 m-1 ">\n` +
-                                `        <a href="?c=movie&a=title">\n` +
+                                `        <a href="?c=movie&a=title&id=${id}&type=${media_type}">\n` +
                                 `            <img class="image w-100 rounded-4 mt-3" src="${IMG_URL+poster_path}" alt="${nazov}">\n` +
                                 `        </a>\n` +
                                 `        <div class="nazov text-center text-white">\n` +
@@ -53,6 +53,14 @@ function showMovies(data) {
     })
 }
 
-function findMovieById(id) {
-
+/**
+ * @param {string} id is ide of movie
+ * @param {string} type is type of movie: movie for films and tv for serials
+ */
+function findMovieById(id, type) {
+    if (type === "movie") {
+        fetch(BASE_URL + FILM_URL + id + "?" + API_KEY_URL).then(res => res.json()).then(data => console.log(data));
+    } else {
+        fetch(BASE_URL + SERIAL_URL + id + "?" + API_KEY_URL).then(res => res.json()).then(data => console.log(data));
+    }
 }
