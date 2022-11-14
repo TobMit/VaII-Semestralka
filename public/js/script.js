@@ -28,7 +28,7 @@ function getMovies(url) {
                 showMovies(data.results);
             });
         } else {
-            alert("We run into problem, try later!");
+            alert("We run into problem, try later! GetMovie");
         }
     });
 }
@@ -70,21 +70,34 @@ function findMovieById(id, type) {
         if (status === 200 && ok) {
             res.json().then(data =>{
                 //console.log(data);
+                //spoločné veci sa naloudujú už tu
+                const categoryElement = document.getElementById("category");
+                let first = true;
+                for (const genre of data.genres) {
+                    if (first) {
+                        first = false;
+                        categoryElement.innerHTML += `${genre.name}`;
+                    } else {
+                        categoryElement.innerHTML += ` | ${genre.name}`;
+                    }
+
+                }
+
                 if (type === "movie") {
-                    showFilmInfo(data);
+                    showFilmInfo(data, id);
                 } else {
                     showSerialInfo(data, id);
                 }
             });
         } else {
-            alert("We run into problem, try later!");
+            alert("We run into problem, try later! FindMovieByID");
         }
     });
 }
 
 function showSerialInfo(data, id) {
-    console.log(data);
-    const {overview, poster_path, name, number_of_seasons, number_of_episodes,first_air_date, genres } = data;
+    //console.log(data);
+    const {overview, poster_path, name, number_of_seasons, number_of_episodes,first_air_date } = data;
 
     const posterElement = document.getElementById("moviePoster");
     posterElement.innerHTML += `<img class="posterImage col-md-4 rounded-4" src="${IMG_URL+poster_path}" alt="${name}">`;
@@ -95,17 +108,6 @@ function showSerialInfo(data, id) {
     const releaseElement = document.getElementById("release");
     releaseElement.innerHTML += `${first_air_date}`;
 
-    const categoryElement = document.getElementById("category");
-    let first = true;
-    for (const genre of genres) {
-        if (first) {
-            first = false;
-            categoryElement.innerHTML += `${genre.name}`;
-        } else {
-            categoryElement.innerHTML += ` | ${genre.name}`;
-        }
-
-    }
 
     const aditionalInformationElement = document.getElementById("aditionalInformation");
     aditionalInformationElement.innerHTML += `<h5>Number of Season: ${number_of_seasons} </h5> \n` +
@@ -115,4 +117,26 @@ function showSerialInfo(data, id) {
     overviewElement.innerHTML += `${overview}`;
 
     getMovies(BASE_URL + SERIAL_URL + id + "/similar?" + API_KEY_URL);
+}
+
+function showFilmInfo(data, id) {
+    console.log(data);
+    const {overview, poster_path, title, runtime, release_date,buget } = data;
+
+    const posterElement = document.getElementById("moviePoster");
+    posterElement.innerHTML += `<img class="posterImage col-md-4 rounded-4" src="${IMG_URL+poster_path}" alt="${name}">`;
+
+    const movieNameElement = document.getElementById("movieName");
+    movieNameElement.innerHTML += `${title}`;
+
+    const releaseElement = document.getElementById("release");
+    releaseElement.innerHTML += `${release_date}`;
+
+    const aditionalInformationElement = document.getElementById("aditionalInformation");
+    aditionalInformationElement.innerHTML += `<h5>Runtime: ${Math.floor(runtime/60)}h ${runtime-(Math.floor(runtime/60)*60)}m </h5> \n` +
+                                            `<p>Buget: ${buget}</p>`;
+
+    document.getElementById("overview").innerHTML += `${overview}`;
+
+    getMovies(BASE_URL + FILM_URL + id + "/similar?" + API_KEY_URL);
 }
