@@ -22,7 +22,7 @@ function getMovies(url, type) {
         // kontrolujem či je response v pohode
         if (status === 200 && ok) {
             res.json().then(data =>{
-                //console.log(data);
+                console.log(data);
 
                 //aby sme nemuseli parsovať všetko iba result object
                 showMovies(data.results, type);
@@ -114,15 +114,18 @@ function showSerialInfo(data, id) {
 }
 
 function showFilmInfo(data, id) {
-    //console.log(data);
-    const {overview, poster_path, title, runtime, release_date,buget } = data;
-
+    console.log(data);
+    let budgetVypis = "unknown";
+    const {overview, poster_path, title, runtime, release_date, budget } = data;
+    if (budget !== 0) {
+        budgetVypis = budget;
+    }
     document.getElementById("moviePoster").innerHTML += `<img class="posterImage col-md-4 rounded-4" src="${IMG_URL+poster_path}" alt="${title}">`;
     document.getElementById("movieName").innerHTML += `${title}`;
     document.getElementById("release").innerHTML += `${release_date}`;
     const aditionalInformationElement = document.getElementById("aditionalInformation");
     aditionalInformationElement.innerHTML += `<h5>Runtime: ${Math.floor(runtime/60)}h ${runtime-(Math.floor(runtime/60)*60)}m </h5> \n` +
-                                            `<p>Buget: ${buget}</p>`;
+                                            `<p>Buget: ${budgetVypis}</p>`;
     document.getElementById("overview").innerHTML += `${overview}`;
 
     getMovies(BASE_URL + FILM_URL + id + "/similar?" + API_KEY_URL, "movie");

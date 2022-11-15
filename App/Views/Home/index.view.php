@@ -1,4 +1,7 @@
-<script> getMovies(BASE_URL+POP_MOVIE+API_KEY_URL, null) </script>
+<script>
+    getMovies(BASE_URL+POP_MOVIE+API_KEY_URL, null)
+    getMovies(BASE_URL+POP_MOVIE+API_KEY_URL+"&page=2", null)
+</script>
 <div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
