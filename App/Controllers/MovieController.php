@@ -36,4 +36,12 @@ class MovieController extends AControllerBase
         $tmpArray = array($this->request()->getValue('id'), $this->request()->getValue('type'));
         return $this->html($tmpArray,"title");
     }
+
+
+    public function search() :Response
+    {
+        $searchQuery = $this->app->getRequest()->getPost();
+        $tmpArray = array($searchQuery['search']);
+        return $this->html($tmpArray);
+    }
 }

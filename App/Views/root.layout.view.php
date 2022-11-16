@@ -37,8 +37,8 @@
                         <li><a href="?c=home&a=about" class="nav-link px-2 <?php if ($pageDetecgor->getPageId() == 4) { ?> text-white <?php } ?> ">About</a></li>
                     </ul>
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex" role="search">
-                        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+                    <form method="post" action="?c=movie&a=search" class="col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex" role="search">
+                        <input name="search" type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
                     </form>
 
                     <?php if (!$auth->isLogged()) { ?>

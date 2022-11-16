@@ -1,6 +1,6 @@
 // TMDB
 
-// TODO Pre uplnú funkčnosť treba vytvoriť ešte js file s nazvom config kde uložíme pomocou premennej uložíme vlastný API_KEY
+// TODO Pre uplnú funkčnosť treba vytvoriť ešte js file s nazvom config kde uložíme pomocou premennej vlastný API_KEY
 
 const API_KEY_URL = 'api_key=' + API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -10,6 +10,7 @@ const POP_SERIAL = '/trending/tv/week?';
 const FILM_URL = '/movie/'
 const SERIAL_URL = '/tv/'
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const SEARCH_MULTI = '/search/multi?';
 // BASE_REQUEST = BASE_URL + "request" + API_KEY
 
 //getMovies(BASE_URL+POP_MOVIE+API_KEY_URL);
@@ -22,7 +23,7 @@ function getMovies(url, type) {
         // kontrolujem či je response v pohode
         if (status === 200 && ok) {
             res.json().then(data =>{
-                console.log(data);
+                //console.log(data);
 
                 //aby sme nemuseli parsovať všetko iba result object
                 showMovies(data.results, type);
@@ -35,26 +36,30 @@ function getMovies(url, type) {
 
 function showMovies(data, type) {
     data.forEach(movie => {
+
+
         // získame tieto informácie z fore cyklu a vyhľadávame ich podla názvu v json
         const {title, poster_path, name, id, media_type } = movie;
-        //filmi a serialy majú rôzne označenie názvu tak toto to rieši
-        if (typeof title ==="undefined") {
-            nazov = name;
-        } else {
-            nazov = title;
+        if (media_type === "movie" || media_type === "tv" || typeof media_type === "undefined") {
+            //filmi a serialy majú rôzne označenie názvu tak toto to rieši
+            if (typeof title ==="undefined") {
+                nazov = name;
+            } else {
+                nazov = title;
+            }
+            if (typeof media_type !== "undefined") {
+                type = media_type
+            }
+            const movieElement = document.getElementById("sugestedMoviesSerials");
+            movieElement.innerHTML += `<div class="col-md-2 border rounded-4 m-1 ">\n` +
+                `        <a href="?c=movie&a=title&id=${id}&type=${type}">\n` +
+                `            <img class="image w-100 rounded-4 mt-3" src="${IMG_URL+poster_path}" alt="${nazov}">\n` +
+                `        </a>\n` +
+                `        <div class="nazov text-center text-white">\n` +
+                `            ${nazov}\n` +
+                `        </div>\n` +
+                `    </div> `;
         }
-        if (typeof media_type !== "undefined") {
-            type = media_type
-        }
-        const movieElement = document.getElementById("sugestedMoviesSerials");
-        movieElement.innerHTML += `<div class="col-md-2 border rounded-4 m-1 ">\n` +
-                                `        <a href="?c=movie&a=title&id=${id}&type=${type}">\n` +
-                                `            <img class="image w-100 rounded-4 mt-3" src="${IMG_URL+poster_path}" alt="${nazov}">\n` +
-                                `        </a>\n` +
-                                `        <div class="nazov text-center text-white">\n` +
-                                `            ${nazov}\n` +
-                                `        </div>\n` +
-                                `    </div> `;
     })
 }
 
@@ -114,7 +119,7 @@ function showSerialInfo(data, id) {
 }
 
 function showFilmInfo(data, id) {
-    console.log(data);
+    //console.log(data);
     let budgetVypis = "unknown";
     const {overview, poster_path, title, runtime, release_date, budget } = data;
     if (budget !== 0) {
@@ -129,4 +134,23 @@ function showFilmInfo(data, id) {
     document.getElementById("overview").innerHTML += `${overview}`;
 
     getMovies(BASE_URL + FILM_URL + id + "/similar?" + API_KEY_URL, "movie");
+}
+
+
+function searchMovie(searchQuery) {
+    fetch(BASE_URL+SEARCH_MULTI+API_KEY_URL+"&query="+searchQuery).then(res => {
+        //console.log(res);
+        const {status, ok} = res;
+        // kontrolujem či je response v pohode
+        if (status === 200 && ok) {
+            res.json().then(data =>{
+                console.log(data);
+
+                //aby sme nemuseli parsovať všetko iba result object
+                showMovies(data.results, null);
+            });
+        } else {
+            alert("We run into problem, try later! GetMovie");
+        }
+    });
 }
