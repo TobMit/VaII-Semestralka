@@ -150,7 +150,7 @@ function searchMovie(searchQuery) {
                 showMovies(data.results, null);
             });
         } else {
-            alert("We run into problem, try later! GetMovie");
+            alert("We run into problem, try later! SearchMovie");
         }
     });
 }
