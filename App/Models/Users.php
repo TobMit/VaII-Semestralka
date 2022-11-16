@@ -7,6 +7,9 @@ use App\Core\Model;
 class Users extends Model
 {
     protected $id;
+    protected $email;
+    protected $password;
+
 
     /**
      * @return mixed
@@ -22,22 +25,6 @@ class Users extends Model
     public function setId($id): void
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserName()
-    {
-        return $this->user_name;
-    }
-
-    /**
-     * @param mixed $user_name
-     */
-    public function setUserName($user_name): void
-    {
-        $this->user_name = $user_name;
     }
 
     /**
@@ -71,8 +58,15 @@ class Users extends Model
     {
         $this->password = $password;
     }
-    protected $user_name;
-    protected $email;
-    protected $password;
+
+    public function getUsername()
+    {
+        return $this->id;
+    }
+
+    public function setUsername($username)
+    {
+        $this->id = $username;
+    }
 
 }

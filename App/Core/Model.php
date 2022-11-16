@@ -140,6 +140,27 @@ abstract class Model implements \JsonSerializable
         }
     }
 
+    public function create(): void
+    {
+        self::connect();
+        try {
+            $data = array_fill_keys(static::getDbColumns(), null);
+            foreach ($data as $key => &$item) {
+                $item = isset($this->$key) ? $this->$key : null;
+            }
+            $arrColumns = array_map(fn($item) => (':' . $item), array_keys($data));
+            $columns = '`' . implode('`,`', array_keys($data)) . "`";
+            $params = implode(',', $arrColumns);
+            $sql = "INSERT INTO `" . static::getTableName() . "` ($columns) VALUES ($params)";
+            $stmt = self::$connection->prepare($sql);
+            $stmt->execute($data);
+            $this->{static::getPkColumnName()} = self::$connection->lastInsertId();
+
+        } catch (PDOException $e) {
+            throw new \Exception('Query failed: ' . $e->getMessage(), 0, $e);
+        }
+    }
+
     /**
      * Delete current model from DB
      * @throws \Exception If model not exists, throw an exception

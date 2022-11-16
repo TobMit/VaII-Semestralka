@@ -7,6 +7,10 @@ use App\Core\Responses\Response;
 
 class UserController extends AControllerBase
 {
+    public function authorize($action)
+    {
+        return $this->app->getAuth()->isLogged();
+    }
 
     public function index(): Response
     {

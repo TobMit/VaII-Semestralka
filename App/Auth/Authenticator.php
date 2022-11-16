@@ -3,13 +3,15 @@
 namespace App\Auth;
 
 use App\Core\IAuthenticator;
+use App\Models\Users;
+use Couchbase\User;
 
 /**
  * Class DummyAuthenticator
  * Basic implementation of user authentication
  * @package App\Auth
  */
-class DummyAuthenticator implements IAuthenticator
+class Authenticator implements IAuthenticator
 {
     const LOGIN = "admin";
     const PASSWORD_HASH = '$2y$10$GRA8D27bvZZw8b85CAwRee9NH5nj4CQA6PDFMc90pN9Wi4VAWq3yq'; // admin
@@ -86,5 +88,23 @@ class DummyAuthenticator implements IAuthenticator
     function getLoggedUserId(): mixed
     {
         return $_SESSION['user'];
+    }
+
+    function register($username, $email, $password) :bool {
+        $existingUser = Users::getOne($username);
+        if ($existingUser !== null) {
+            return false;
+        }
+
+        $tmpUser = new Users();
+        $tmpUser->setEmail($email);
+        $tmpUser->setId($username);
+        $tmpUser->setPassword($this->generateHash($password));
+        $tmpUser->create();
+        return true;
+    }
+
+    function generateHash($password): string {
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 }

@@ -50,4 +50,23 @@ class AuthController extends AControllerBase
         $this->app->getAuth()->logout();
         return $this->redirect("?c=home");
     }
+
+
+    /**
+     * Register new user
+     * @return Response
+     */
+    public function register() :Response
+    {
+
+        $formDAta = $this->app->getRequest()->getPost();
+        $registered = $this->app->getAuth()->register($formDAta['username'], $formDAta['email'], $formDAta['password']);
+        if ($registered) {
+            // potvrdenie
+            return $this->redirect("?c=home");
+        } else {
+            // skúste znovu
+            return $this->redirect("?c=home");
+        }
+    }
 }
