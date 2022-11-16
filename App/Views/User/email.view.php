@@ -1,9 +1,13 @@
 <?php
 $layout = 'settings';
+/** @var Array $data */
 ?>
 <h3>Email</h3>
-<form method="post" class="">
+<form method="post" action="?c=user&a=changeemail">
     <div class="mb-1">
+        <div class="text-center text-danger mb-3">
+            <?= @$data['message'] ?>
+        </div>
         <label class="text-white" for="oldEmail">Old email</label>
         <input name="oldEmail" type="text" class="form-control rounded-3 text-bg-dark " id="oldEmail" placeholder="name@example.com">
         <label class="text-white" for="newEmail">New email</label>

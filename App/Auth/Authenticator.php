@@ -4,7 +4,6 @@ namespace App\Auth;
 
 use App\Core\IAuthenticator;
 use App\Models\Users;
-use Couchbase\User;
 
 /**
  * Class DummyAuthenticator
@@ -34,8 +33,12 @@ class Authenticator implements IAuthenticator
      */
     function login($login, $password): bool
     {
-        if ($login == self::LOGIN && password_verify($password, self::PASSWORD_HASH)) {
-            $_SESSION['user'] = self::USERNAME;
+        $testUser = Users::getOne($login);
+        if ($testUser === null) {
+            return false;
+        }
+        if ($login == $testUser->getUsername() && password_verify($password, $testUser->getPassword())) {
+            $_SESSION['user'] = $login;
             return true;
         } else {
             return false;
