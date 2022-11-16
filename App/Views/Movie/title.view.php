@@ -16,7 +16,15 @@
             </div>
             <?php if ($auth->isLogged()) { ?>
                 <div class="d-grid  col-8">
-                    <button type="button" class="btn  btn-outline-danger me-2 text-white"  data-bs-target="#loginModal" data-bs-toggle="Wath">Seen</button>
+                    <?php if ($data[2] === 0) { ?>
+                    <form method="post" action="?c=movie&a=watched&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
+                        <button type="submit" class="btn  btn-outline-danger me-2 text-white"  data-bs-toggle="Wath">Seen</button>
+                    </form>
+                    <?php } else { ?>
+                        <form method="post" action="?c=movie&a=watcheddelete&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
+                            <button type="submit" class="btn  btn-outline-danger me-2 text-white"  data-bs-toggle="Wath">Unseen</button>
+                        </form>
+                    <?php } ?>
                 </div>
             <?php }?>
         </div>
