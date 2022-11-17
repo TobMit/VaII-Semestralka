@@ -52,6 +52,8 @@
                                 <img src="https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu ropdown-menu-end text-small shadow">
+                                <li><a class="dropdown-item  disabled"><?php echo $auth->getLoggedUserName()?></a></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item text-white" href="?c=user">Profile</a></li>
                                 <li><a class="dropdown-item text-white" href="?c=user&a=email">Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
@@ -87,7 +89,7 @@
                                 <input name="password" type="password" class="form-control rounded-3 text-bg-dark" id="floatingPassword" placeholder="Password">
                                 <label class="text-white" for="floatingPassword">Password</label>
                             </div>
-                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">Sign up</button>
+                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit" name="submit">Sign up</button>
                             <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                             <hr class="my-4">
                             <h2 class="fs-5 fw-bold mb-3 text-white">Or use a third-party</h2>
@@ -119,7 +121,7 @@
                         <form class="form-sign" method="post" action="<?= \App\Config\Configuration::LOGIN_URL ?>">
                             <div class="form-floating mb-3">
 <!--                                <input type="email" class="form-control rounded-3 text-bg-dark " id="floatingInputLogin" placeholder="name@example.com">-->
-                                <input name="login" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
+                                <input name="username" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
                                 <label class="text-white" for="login">Email address or user name</label>
                             </div>
                             <div class="form-floating mb-3">

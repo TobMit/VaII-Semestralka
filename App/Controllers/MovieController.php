@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Config\Configuration;
 use App\Core\Responses\Response;
 use App\Core\AControllerBase;
 use App\Models\Wllists;
@@ -15,6 +16,7 @@ class MovieController extends AControllerBase
             case "films":
             case "serials":
             case "title":
+            case "search":
                 return true;
             default:
                 return $this->app->getAuth()->isLogged();
@@ -46,12 +48,15 @@ class MovieController extends AControllerBase
     {
         $pageId = $this->app->getPageDetecotr();
         $pageId->setActualPage(0);
-        $tmpWatched = Wllists::getAll("username = ? and typ = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(), 'w',$this->request()->getValue('id'), $this->request()->getValue('type') ]);
-        $watched = 0;
-        if (count($tmpWatched) !== 0) {
-            $watched = 1;
+        $tmpArray = array($this->request()->getValue('id'), $this->request()->getValue('type'),0);
+        if ($this->app->getAuth()->isLogged()) {
+            $tmpWatched = Wllists::getAll("username = ? and typ = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(), 'w', $this->request()->getValue('id'), $this->request()->getValue('type')]);
+            $watched = 0;
+            if (count($tmpWatched) !== 0) {
+                $watched = 1;
+            }
+            $tmpArray[2] = $watched;
         }
-        $tmpArray = array($this->request()->getValue('id'), $this->request()->getValue('type'), $watched);
         return $this->html($tmpArray,"title");
     }
 
@@ -59,6 +64,9 @@ class MovieController extends AControllerBase
     public function search() :Response
     {
         $searchQuery = $this->app->getRequest()->getPost();
+        if (!preg_match(Configuration::REGEX_SEARCH, $searchQuery['search'])) {
+            return $this->html(array(""));
+        }
         $tmpArray = array($searchQuery['search']);
         return $this->html($tmpArray);
     }

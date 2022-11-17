@@ -31,7 +31,15 @@ class AuthController extends AControllerBase
         $formData = $this->app->getRequest()->getPost();
         $logged = null;
         if (isset($formData['submit'])) {
-            $logged = $this->app->getAuth()->login($formData['login'], $formData['password']);
+            if (!preg_match(Configuration::REGEX_USERNAME, $formData['username'])){
+                $data = ['message' => 'Bad Username. Username must have at least 5 characters'];
+                return $this->html($data);
+            }
+            if (!preg_match(Configuration::REGEX_PASSWORD, $formData['password'])){
+                $data = ['message' => 'Bad Password. Password must have at least 8 characters, one Upper characer and one special character [@#$%^&*-_]'];
+                return $this->html($data);
+            }
+            $logged = $this->app->getAuth()->login($formData['username'], $formData['password']);
             if ($logged) {
                 return $this->redirect('?c=home');
             }
@@ -58,15 +66,33 @@ class AuthController extends AControllerBase
      */
     public function register() :Response
     {
-
+        $data = [];
         $formDAta = $this->app->getRequest()->getPost();
-        $registered = $this->app->getAuth()->register($formDAta['username'], $formDAta['email'], $formDAta['password']);
+        $registered = false;
+        if (isset($formDAta['submit'])) {
+
+            if (!preg_match(Configuration::REGEX_USERNAME, $formDAta['username'])){
+                $data = ['message' => 'Bad Username. Username must have at least 5 characters'];
+                return $this->html($data);
+            }
+            if (!preg_match(Configuration::REGEX_PASSWORD, $formDAta['password'])){
+                $data = ['message' => 'Bad Password. Password must have at least 8 characters, one Upper characer and one special character [@#$%^&*-_]'];
+                return $this->html($data);
+            }
+            if (!filter_var($formDAta['email'], FILTER_VALIDATE_EMAIL)){
+                $data = ['message' => 'Bad email addres.'];
+                return $this->html($data);
+            }
+            $registered = $this->app->getAuth()->register($formDAta['username'], $formDAta['email'], $formDAta['password']);
+        }//if ()
         if ($registered) {
             // potvrdenie
-            return $this->redirect("?c=home");
+            //return $this->redirect("?c=home");
+            return $this->login();
         } else {
             // skúste znovu
-            return $this->redirect("?c=home");
+            $data = ['message' => 'Bad form data'];
+            return $this->html($data);
         }
     }
 }

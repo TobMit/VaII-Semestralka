@@ -29,4 +29,8 @@ class Configuration
     public const AUTH_CLASS = Authenticator::class;
 
     public const PAGE_DETECTOR_CLASS = PageDetector::class;
+
+    public const REGEX_USERNAME = "/^[A-Za-z][A-Za-z0-9]{4,25}$/";
+    public const REGEX_PASSWORD = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*-_]{8,}$/';
+    public const REGEX_SEARCH = '/^[A-Za-z0-9\s?!.,:]{1,}$/';
 }

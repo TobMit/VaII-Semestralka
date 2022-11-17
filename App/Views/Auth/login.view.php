@@ -18,7 +18,7 @@ $layout = 'auth';
                     <form class="form-sign" method="post" action="<?= \App\Config\Configuration::LOGIN_URL ?>">
                         <div class="form-floating mb-3">
                             <!--                                <input type="email" class="form-control rounded-3 text-bg-dark " id="floatingInputLogin" placeholder="name@example.com">-->
-                            <input name="login" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
+                            <input name="username" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
                             <label class="text-white" for="login">Email address or user name</label>
                         </div>
                         <div class="form-floating mb-3">
