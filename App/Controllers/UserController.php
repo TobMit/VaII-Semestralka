@@ -17,19 +17,27 @@ class UserController extends AControllerBase
 
     public function index(): Response
     {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(0);
         return $this->html();
     }
 
     public function email() : Response
     {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(0);
         return $this->html();
     }
     public function password() : Response
     {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(0);
         return $this->html();
     }
     public function collection() : Response
     {
+        $pageId = $this->app->getPageDetecotr();
+        $pageId->setActualPage(0);
         return $this->html();
     }
 
