@@ -59,7 +59,7 @@
 
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="border-danger border-bottom">
-        <h1>Suggestins</h1>
+        <h1>Suggestion</h1>
     </div>
 </div>
 <div class="row justify-content-evenly" id="sugestedMoviesSerials">

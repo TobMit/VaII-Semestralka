@@ -18,11 +18,11 @@ $layout = 'auth';
                     <form class="form-sign" method="post" action="<?= \App\Config\Configuration::LOGIN_URL ?>">
                         <div class="form-floating mb-3">
                             <!--                                <input type="email" class="form-control rounded-3 text-bg-dark " id="floatingInputLogin" placeholder="name@example.com">-->
-                            <input name="username" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
+                            <input required name="username" type="text" class="form-control rounded-3 text-bg-dark " id="login" placeholder="name@example.com">
                             <label class="text-white" for="login">Email address or user name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input name="password" type="password" class="form-control rounded-3 text-bg-dark" id="password" placeholder="Password">
+                            <input required name="password" type="password" class="form-control rounded-3 text-bg-dark" id="password" placeholder="Password">
                             <label class="text-white" for="password">Password</label>
                         </div>
                         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit" name="submit">Login</button>

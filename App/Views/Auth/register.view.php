@@ -11,15 +11,15 @@ $layout = 'auth';
                 </div>
                 <form method="post" action="?c=auth&a=register" class="">
                     <div class="form-floating mb-3">
-                        <input name="username" type="text" class="form-control rounded-3 text-bg-dark" id="floatingInputUserName" placeholder="text">
+                        <input required name="username" type="text" class="form-control rounded-3 text-bg-dark" id="floatingInputUserName" placeholder="text">
                         <label class="text-white" for="floatingInputUserName">Username</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input name="email" type="email" class="form-control rounded-3 text-bg-dark" id="floatingInput" placeholder="name@example.com">
+                        <input required name="email" type="email" class="form-control rounded-3 text-bg-dark" id="floatingInput" placeholder="name@example.com">
                         <label class="text-white" for="floatingInput">Email address</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input name="password" type="password" class="form-control rounded-3 text-bg-dark" id="floatingPassword" placeholder="Password">
+                        <input required name="password" type="password" class="form-control rounded-3 text-bg-dark" id="floatingPassword" placeholder="Password">
                         <label class="text-white" for="floatingPassword">Password</label>
                     </div>
                     <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit" name="submit">Sign up</button>
