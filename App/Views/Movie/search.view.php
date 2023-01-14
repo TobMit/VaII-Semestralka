@@ -2,7 +2,7 @@
 /** @var Array $data */
 ?>
 <script>
-    searchMovie("<?php echo $data[0]?>");
+    movieDB.searchMovie("<?php echo $data[0]?>");
 </script>
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="border-danger border-bottom">

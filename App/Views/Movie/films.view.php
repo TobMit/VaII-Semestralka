@@ -1,6 +1,7 @@
 <script>
-    getMovies(BASE_URL+POP_FILM+API_KEY_URL, null)
-    getMovies(BASE_URL+POP_FILM+API_KEY_URL+"&page=2", null)
+
+    movieDB.getMovies(BASE_URL+POP_FILM+API_KEY_URL, null)
+    movieDB.getMovies(BASE_URL+POP_FILM+API_KEY_URL+"&page=2", null)
 </script>
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="border-danger border-bottom">

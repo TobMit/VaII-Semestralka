@@ -1,6 +1,6 @@
 <script>
-    getMovies(BASE_URL+POP_MOVIE+API_KEY_URL, null)
-    getMovies(BASE_URL+POP_MOVIE+API_KEY_URL+"&page=2", null)
+    movieDB.getMovies(BASE_URL+POP_MOVIE+API_KEY_URL, null)
+    movieDB.getMovies(BASE_URL+POP_MOVIE+API_KEY_URL+"&page=2", null)
 </script>
 <div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">

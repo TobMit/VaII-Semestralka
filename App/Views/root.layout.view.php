@@ -18,6 +18,7 @@
 
         <script  src="/public/js/config.js"></script>
         <script  src="/public/js/script.js"></script>
+        <script> movieDB = new MovieDB()</script>
     </head>
     <body class="d-flex flex-column h-100">
         <header class="navbar navbar-expand-lg p-3 navbar-color fixed-top" aria-label="NavBAr">
