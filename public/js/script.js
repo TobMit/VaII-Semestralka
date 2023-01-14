@@ -13,25 +13,26 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const SEARCH_MULTI = '/search/multi?';
 // BASE_REQUEST = BASE_URL + "request" + API_KEY
 
-//getMovies(BASE_URL+POP_MOVIE+API_KEY_URL);
-
-function getMovies(url, type) {
+async function fetchUrl(url) {
     //zíkame url request, response uložime do res.json a potom prístpime k dátam
-    fetch(url).then(res => {
+    return fetch(url).then(res => {
         //console.log(res);
         const {status, ok} = res;
         // kontrolujem či je response v pohode
         if (status === 200 && ok) {
-            res.json().then(data =>{
-                //console.log(data);
-
-                //aby sme nemuseli parsovať všetko iba result object
-                showMovies(data.results, type);
-            });
+            return res.json();
         } else {
             alert("We run into problem, try later! GetMovie");
         }
     });
+}
+
+//getMovies(BASE_URL+POP_MOVIE+API_KEY_URL);
+
+async function getMovies(url, type) {
+    res  = await fetchUrl(url);
+    showMovies(res.results, type);
+    console.log(res.results);
 }
 
 function showMovies(data, type) {
@@ -67,40 +68,33 @@ function showMovies(data, type) {
  * @param {string} id is ide of movie
  * @param {string} type is type of movie: movie for films and tv for serials
  */
-function findMovieById(id, type) {
+async function findMovieById(id, type) {
     if (type === "movie") {
         url = BASE_URL + FILM_URL + id + "?" + API_KEY_URL;
     } else {
         url = BASE_URL + SERIAL_URL + id + "?" + API_KEY_URL;
     }
-    fetch(url).then(res => {
-        const {status, ok} = res;
-        if (status === 200 && ok) {
-            res.json().then(data =>{
-                //console.log(data);
-                //spoločné veci sa naloudujú už tu
-                const categoryElement = document.getElementById("category");
-                let first = true;
-                for (const genre of data.genres) {
-                    if (first) {
-                        first = false;
-                        categoryElement.innerHTML += `${genre.name}`;
-                    } else {
-                        categoryElement.innerHTML += ` | ${genre.name}`;
-                    }
+    data = await fetchUrl(url);
 
-                }
-
-                if (type === "movie") {
-                    showFilmInfo(data, id);
-                } else {
-                    showSerialInfo(data, id);
-                }
-            });
+    //console.log(data);
+    //spoločné veci sa naloudujú už tu
+    const categoryElement = document.getElementById("category");
+    let first = true;
+    for (const genre of data.genres) {
+        if (first) {
+            first = false;
+            categoryElement.innerHTML += `${genre.name}`;
         } else {
-            alert("We run into problem, try later! FindMovieByID");
+            categoryElement.innerHTML += ` | ${genre.name}`;
         }
-    });
+
+    }
+
+    if (type === "movie") {
+        showFilmInfo(data, id);
+    } else {
+        showSerialInfo(data, id);
+    }
 }
 
 function showSerialInfo(data, id) {
@@ -137,20 +131,7 @@ function showFilmInfo(data, id) {
 }
 
 
-function searchMovie(searchQuery) {
-    fetch(BASE_URL+SEARCH_MULTI+API_KEY_URL+"&query="+searchQuery).then(res => {
-        //console.log(res);
-        const {status, ok} = res;
-        // kontrolujem či je response v pohode
-        if (status === 200 && ok) {
-            res.json().then(data =>{
-                console.log(data);
-
-                //aby sme nemuseli parsovať všetko iba result object
-                showMovies(data.results, null);
-            });
-        } else {
-            alert("We run into problem, try later! SearchMovie");
-        }
-    });
+async function searchMovie(searchQuery) {
+    data = await fetchUrl(BASE_URL+SEARCH_MULTI+API_KEY_URL+"&query="+searchQuery);
+    showMovies(data.results, null);
 }
