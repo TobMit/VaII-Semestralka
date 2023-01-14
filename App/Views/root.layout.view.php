@@ -141,7 +141,7 @@
         </main>
 
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-auto border-top border-danger mb-0">
-            <p class="col-md-4 mb-0 text-muted">&copy; 2022 DatabazaFilmov</p>
+            <p class="col-md-4 mb-0 text-muted">&copy; 2023 DatabazaFilmov</p>
 
             <a href="?c=home" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <img src="https://static.wixstatic.com/media/2cd43b_1b726a2e5fd8486f9004db29808ab090~mv2.png/v1/fill/w_192,h_192,q_90/2cd43b_1b726a2e5fd8486f9004db29808ab090~mv2.png" alt="DatabazaFilmov" width="40" height="40">
