@@ -2,7 +2,10 @@
 /** @var Array $data */
 /** @var \App\Core\IAuthenticator $auth */
 ?>
-<script> movieDB.findMovieById("<?php echo $data[0]?>", "<?php echo $data[1]?>" ) </script>
+<script>
+    movieDB.findMovieById("<?php echo $data[0]?>", "<?php echo $data[1]?>" )
+    movieDB.getComments();
+</script>
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="row  border-danger border-bottom pb-3 m-1">
         <div class="col-md-4" id="moviePoster">
@@ -22,7 +25,7 @@
                     </form>
                     <?php } else { ?>
                         <form method="post" action="?c=movie&a=watcheddelete&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
-                            <button type="submit" class="btn  btn-outline-danger me-2 text-white"  data-bs-toggle="Wath">Unseen</button>
+                            <button type="submit" class="btn  btn-danger me-2 text-white"  data-bs-toggle="Wath">Unseen</button>
                         </form>
                     <?php } ?>
                 </div>
@@ -47,7 +50,7 @@
     <div class="row justify-content-evenly">
         <div class="row d-flex justify-content-center">
             <div class="col-md-11 col-lg-9 col-xl-7">
-                <div>
+                <div id="commentPlace">
                     <div class="d-flex flex-start mb-3">
                         <div class="card w-100">
                             <div class="card-body p-4">

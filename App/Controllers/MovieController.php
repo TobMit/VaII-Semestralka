@@ -89,15 +89,29 @@ class MovieController extends AControllerBase
 
     public function commentCreate() :Response {
         $tmpCommnet = new Comments();
-        $postData = $this->app->getRequest()->getPost();
         $tmpCommnet->setUsers($this->app->getAuth()->getLoggedUserName());
-        $tmpCommnet->setText($postData["text"]);
-        $tmpCommnet->setIdMovie($postData["idMovie"]);
-        $tmpCommnet->setTypMovie($postData["typMovie"]);
+        $tmpCommnet->setText($this->app->getRequest()->getValue("commentText"));
+        $tmpCommnet->setIdMovie($this->app->getRequest()->getValue("idMovie"));
+        $tmpCommnet->setTypMovie($this->app->getRequest()->getValue("typMovie"));
         $tmpCommnet->create();
         $returnData = array();
         $returnData['isSuccess'] = true;
 
+        return $this->json($returnData);
+    }
+
+    public function getComments() :Response {
+        $idMovie = $this->app->getRequest()->getValue("idMovie");
+        $typMovie=$this->app->getRequest()->getValue("typMovie");
+        $returnData = array();
+        $returnData['isSuccess'] = true;
+        $tmpComments = Comments::getAll("idMovie = ? and typMovie = ?", [$idMovie, $typMovie]);
+        $arrayComment = array();
+        foreach ($tmpComments as $tmpComment) {
+            array_push($arrayComment, array('user' => $tmpComment->getUsers(), 'text' => $tmpComment->getText()));
+        }
+        $returnData['arrSize'] = count($arrayComment);
+        $returnData['results'] = $arrayComment;
         return $this->json($returnData);
     }
 }

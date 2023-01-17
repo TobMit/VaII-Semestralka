@@ -154,7 +154,7 @@ class MovieDB {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: "POST",
-                body: "text=" + comment + "&idMovie=" + this.idMovie + "&typMovie=" + this.typMovie
+                body: "commentText=" + comment + "&idMovie=" + this.idMovie + "&typMovie=" + this.typMovie
 
             });
         //console.log(data.json());
@@ -163,6 +163,47 @@ class MovieDB {
         if (!dataJson.isSuccess) {
             alert("Error saving comment");
         }
+        this.getComments();
+    }
+    async getComments() {
+        let data = await fetch("?c=movie&a=getComments",
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: "POST",
+                body: "idMovie=" + this.idMovie + "&typMovie=" + this.typMovie
 
+            });
+        let dataJson = await data.json();
+        console.log(dataJson);
+        if (!dataJson.isSuccess) {
+            alert("Error saving comment");
+        } else {
+            let commentArr = await dataJson.results;
+            this.showComments(commentArr, dataJson.arrSize)
+        }
+    }
+
+    showComments(data, size) {
+        let comments = document.getElementById("commentPlace");
+        comments.innerHTML="";
+        for (let i = 0; i < size; i++) {
+            console.log(data[i]);
+            comments.innerHTML +=
+                `<div class="d-flex flex-start mb-3">
+                        <div class="card w-100">
+                            <div class="card-body p-4">
+                                <div class="">
+                                    <h5>${data[i].user}</h5>
+                                    <p>
+                                        ${data[i].text}
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+        }
     }
 }
