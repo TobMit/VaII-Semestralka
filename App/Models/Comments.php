@@ -7,6 +7,40 @@ class Comments extends \App\Core\Model
     protected $id;
     protected $users;
     protected $text;
+    protected $typMovie;
+
+    /**
+     * @return mixed
+     */
+    public function getTypMovie()
+    {
+        return $this->typMovie;
+    }
+
+    /**
+     * @param mixed $typMovie
+     */
+    public function setTypMovie($typMovie): void
+    {
+        $this->typMovie = $typMovie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdMovie()
+    {
+        return $this->idMovie;
+    }
+
+    /**
+     * @param mixed $idMovie
+     */
+    public function setIdMovie($idMovie): void
+    {
+        $this->idMovie = $idMovie;
+    }
+    protected $idMovie;
 
     /**
      * @return mixed

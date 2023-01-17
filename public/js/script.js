@@ -15,6 +15,8 @@ const SEARCH_MULTI = '/search/multi?';
 
 class MovieDB {
     constructor() {
+        this.typMovie = "undefined";
+        this.idMovie = -1;
         //
     }
     async fetchUrl(url) {
@@ -75,6 +77,8 @@ class MovieDB {
      */
     async findMovieById(id, type) {
         var url;
+        this.idMovie = id;
+        this.typMovie = type;
         if (type === "movie") {
             url = BASE_URL + FILM_URL + id + "?" + API_KEY_URL;
         } else {
@@ -141,5 +145,20 @@ class MovieDB {
         let data = await this.fetchUrl(BASE_URL+SEARCH_MULTI+API_KEY_URL+"&query="+searchQuery);
         this.showMovies(data.results, null);
     }
-}
 
+    async getForm() {
+        let comment = document.getElementById("textAreaComment").value;
+        console.log(comment);
+        let data = await fetch("?c=movie&a=commentCreate",
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: "POST",
+                body: 'message=5&message2=6'
+
+            });
+        console.log(data);
+        console.log(data.json());
+    }
+}

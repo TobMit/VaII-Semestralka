@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Config\Configuration;
 use App\Core\Responses\Response;
 use App\Core\AControllerBase;
+use App\Models\Comments;
 use App\Models\Wllists;
 
 class MovieController extends AControllerBase
@@ -84,5 +85,20 @@ class MovieController extends AControllerBase
         $tmpWatched = Wllists::getAll("username = ? and typ = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(), 'w',$this->request()->getValue('id'), $this->request()->getValue('type') ]);
         $tmpWatched[0]->delete();
         return $this->redirect("?c=movie&a=title&id=" . $this->request()->getValue('id') . "&type=" . $this->request()->getValue('type'));
+    }
+
+    public function commentCreate() :Response {
+        $tmpCommnet = new Comments();
+        $postData = $this->app->getRequest()->getPost();
+        $postData['isSuccessfull'] = false;
+        /*
+        $tmpCommnet->setUsers($this.$this->app->getAuth()->getLoggedUserName());
+        $tmpCommnet->setText($postData["text"]);
+        $tmpCommnet->setIdMovie($postData["idMovie"]);
+        $tmpCommnet->setTypMovie($postData["typMovie"]);
+        $tmpCommnet->create();*/
+        //return $this.$this->redirect("?c=movie&a=title&id=" . $postData["idMovie"] . "&type=" . $postData["typMovie"]);
+        $data = array(['isSuccessful' => false], ['text' => "ha text"]);
+        return $this->json($postData);
     }
 }
