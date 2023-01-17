@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-class Ratings extends \App\Core\Model
+use App\Core\Model;
+class Ratings extends Model
 {
-    private $id;
-    private $user;
-    private $rating;
-    private $typMovie;
-    private $idMovie;
+    protected $id;
+    protected $users;
+    protected $rating;
+    protected $typMovie;
+    protected $idMovie;
 
     /**
      * @return mixed
@@ -29,17 +30,17 @@ class Ratings extends \App\Core\Model
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getUsers()
     {
-        return $this->user;
+        return $this->users;
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $users
      */
-    public function setUser($user): void
+    public function setUsers($users): void
     {
-        $this->user = $user;
+        $this->users = $users;
     }
 
     /**

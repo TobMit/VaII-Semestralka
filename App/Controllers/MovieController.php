@@ -139,26 +139,42 @@ class MovieController extends AControllerBase
     }
 
     public function getRating() :Response {
-        $tmpUserRating = Ratings::getAll("user = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(),$this->app->getRequest()->getValue("idMovie"), $this->app->getRequest()->getValue("typMovie")]);
+        $tmpUserRating = Ratings::getAll("users = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(),$this->app->getRequest()->getValue("idMovie"), $this->app->getRequest()->getValue("typMovie")]);
         $averageRating = Ratings::getAll("idMovie = ? and typMovie = ?", [$this->app->getRequest()->getValue("idMovie"), $this->app->getRequest()->getValue("typMovie")]);
 
         $returnData = array();
-        if ($tmpUserRating[0]->getRating() >= 1) {
+        if (count($tmpUserRating)!=0) {
             $returnData['userSelected'] = $tmpUserRating[0]->getRating();
         } else {
             $returnData['userSelected'] = 0;
         }
         $average = 0;
-        foreach ($averageRating as $ratings) {
-            $average += $ratings->getRating();
+        if (count($averageRating) != 0) {
+            foreach ($averageRating as $ratings) {
+                $average += $ratings->getRating();
+            }
+            $returnData['movieAverage'] = $average / count($averageRating);
+        } else {
+            $returnData['movieAverage'] = 0;
         }
-        $returnData['movieAverage'] = $average / count($averageRating);
-        //return $this->json($returnData);
-        return $this->json();
+        return $this->json($returnData);
+        //return $this->json();
     }
 
     public function setRating() :Response {
-
+        $tmpUserRating = Ratings::getAll("users = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(),$this->app->getRequest()->getValue("idMovie"), $this->app->getRequest()->getValue("typMovie")]);
+        if (count($tmpUserRating) != 0) {
+            $userRating = $tmpUserRating[0];
+            $userRating->setRating($this->app->getRequest()->getValue("userSelected"));
+            $userRating->save();
+        } else {
+            $newUserRating = new Ratings();
+            $newUserRating->setUsers($this->app->getAuth()->getLoggedUserName());
+            $newUserRating->setRating($this->app->getRequest()->getValue("userSelected"));
+            $newUserRating->setIdMovie($this->app->getRequest()->getValue("idMovie"));
+            $newUserRating->setTypMovie($this->app->getRequest()->getValue("typMovie"));
+            $newUserRating->create();
+        }
         return $this->json();
     }
 }

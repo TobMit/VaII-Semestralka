@@ -224,7 +224,7 @@ class MovieDB {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: "POST",
-                body: "userSelected=" + ratingSelectedValue
+                body: "userSelected=" + ratingSelectedValue + "&idMovie=" + this.idMovie + "&typMovie=" + this.typMovie
 
             });
 
@@ -232,14 +232,23 @@ class MovieDB {
     }
 
     async #showRating(ratingText, ratingSelelect) {
-        let data = await fetch("?c=movie&a=getRating");
-        console.log(data);
-        if (typeof data.movieAverage === "undefined") {
+        let data = await fetch("?c=movie&a=getRating",
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: "POST",
+                body: "idMovie=" + this.idMovie + "&typMovie=" + this.typMovie
+
+            });
+        var jsonData = await data.json();
+        console.log(jsonData);
+        if (typeof jsonData.movieAverage === "undefined") {
             ratingText.innerText = 'none/5'
         } else {
-            ratingText.innerText = data.movieAverage + "/5";
+            ratingText.innerText = jsonData.movieAverage + "/5";
         }
-        ratingSelelect.value = data.userSelected;
+        ratingSelelect.value = jsonData.userSelected;
 
     }
 }
