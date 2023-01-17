@@ -18,6 +18,7 @@ class MovieController extends AControllerBase
             case "serials":
             case "title":
             case "search":
+            case "getComments":
                 return true;
             default:
                 return $this->app->getAuth()->isLogged();

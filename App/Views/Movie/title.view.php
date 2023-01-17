@@ -51,64 +51,48 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-11 col-lg-9 col-xl-7">
                 <div id="commentPlace">
-                    <div class="d-flex flex-start mb-3">
-                        <div class="card w-100">
-                            <div class="card-body p-4">
-                                <div class="">
-                                    <h5>Johny Cash</h5>
-                                    <p>
-                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                                        ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus
-                                        viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-                                        Donec lacinia congue felis in faucibus ras purus odio, vestibulum in
-                                        vulputate at, tempus viverra turpis.
-                                    </p>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-start mb-3">
-                        <div class="card w-100">
-                            <div class="card-body p-4">
-                                <div class="">
-                                    <h5>Mindy Campbell</h5>
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
-                                        cumque doloribus dolorum dolor repellat nemo animi at iure autem fuga
-                                        cupiditate architecto ut quam provident neque, inventore nisi eos quas?
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-
-                <!-- TODO iba pre prihlásených -->
-                <div class="d-flex flex-start">
-                    <div class="card w-100">
-                        <div class="card-body p-4">
-                            <div class="d-flex flex-start w-100">
-                                <div class="w-100">
-                                    <div class="form-outline">
-                                        <h5 class="text-white">
-                                            <label class="form-label" for="textAreaExample">Add a comment</label>
-                                        </h5>
-                                        <textarea class="form-control text-bg-dark" id="textAreaComment" rows="4" placeholder="What is your view?"></textarea>
-                                    </div>
-                                    <div class="d-flex justify-content-end mt-3">
-                                        <button onclick="movieDB.getForm()" type="button" class="btn btn-danger">
-                                            Send
-                                        </button>
+                <?php if ($auth->isLogged()) { ?>
+                    <div class="d-flex flex-start">
+                        <div class="card w-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex flex-start w-100">
+                                    <div class="w-100">
+                                        <div class="form-outline">
+                                            <h5 class="text-white">
+                                                <label class="form-label" for="textAreaComment">Add a comment</label>
+                                            </h5>
+                                            <textarea class="form-control text-bg-dark" id="textAreaComment" rows="4" placeholder="What is your view?"></textarea>
+                                        </div>
+                                        <div class="d-flex justify-content-end mt-3">
+                                            <button onclick="movieDB.getForm()" type="button" class="btn btn-danger">
+                                                Send
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <div class="d-flex flex-start">
+                        <div class="card w-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex flex-start w-100">
+                                    <div class="w-100">
+                                        <div class="form-outline">
+                                            <h5 class="text-danger">
+                                                You need to log in to add a comment, if you don't have an account yet, register.
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }?>
             </div>
         </div>
     </div>

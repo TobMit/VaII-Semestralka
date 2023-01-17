@@ -34,12 +34,6 @@ class UserController extends AControllerBase
         $pageId->setActualPage(0);
         return $this->html();
     }
-    public function collection() : Response
-    {
-        $pageId = $this->app->getPageDetecotr();
-        $pageId->setActualPage(0);
-        return $this->html();
-    }
 
     public function changeemail() :Response
     {
