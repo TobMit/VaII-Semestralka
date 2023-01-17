@@ -6,7 +6,7 @@
     <div class="row  border-danger border-bottom pb-3 m-1">
         <div class="col-md-4" id="moviePoster">
         </div>
-        <div class="container col-lg-auto popis">
+        <div class="container col-6 popis">
             <h1 id="movieName"></h1>
             <p class="text-secondary" id="release">Release: </p>
             <h4 id="category"></h4>
@@ -151,6 +151,8 @@
     movieDB.getComments();
     <?php if ($auth->isLogged()) { ?>
     movieDB.ratingHandler();
+    <?php } else { ?>
+    movieDB.showOnlyRating();
     <?php } ?>
 </script>
 
