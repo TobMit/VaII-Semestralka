@@ -10,26 +10,39 @@
     <div class="row  border-danger border-bottom pb-3 m-1">
         <div class="col-md-4" id="moviePoster">
         </div>
-        <div class="col-lg-auto popis">
+        <div class="container col-lg-auto popis">
             <h1 id="movieName"></h1>
             <p class="text-secondary" id="release">Release: </p>
             <h4 id="category"></h4>
             <div id="aditionalInformation">
 
             </div>
-            <?php if ($auth->isLogged()) { ?>
-                <div class="d-grid  col-8">
-                    <?php if ($data[2] === 0) { ?>
-                    <form method="post" action="?c=movie&a=watched&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
-                        <button type="submit" class="btn  btn-outline-danger me-2 text-white"  data-bs-toggle="Wath">Seen</button>
-                    </form>
-                    <?php } else { ?>
-                        <form method="post" action="?c=movie&a=watcheddelete&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
-                            <button type="submit" class="btn  btn-danger me-2 text-white"  data-bs-toggle="Wath">Unseen</button>
+            <div class="row">
+                <?php if ($auth->isLogged()) { ?>
+                    <div class="m-1 col-2">
+                        <?php if ($data[2] === 0) { ?>
+                        <form method="post" action="?c=movie&a=watched&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
+                            <button type="submit" class="btn  btn-outline-success me-2 text-white"  data-bs-toggle="Wath">Seen</button>
                         </form>
-                    <?php } ?>
-                </div>
-            <?php }?>
+                        <?php } else { ?>
+                            <form method="post" action="?c=movie&a=watcheddelete&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
+                                <button type="submit" class="btn  btn-success me-2 text-white"  data-bs-toggle="Wath">Unseen</button>
+                            </form>
+                        <?php } ?>
+                    </div>
+                    <div class="m-1 col-2">
+                        <?php if ($data[3] === 0) { ?>
+                            <form method="post" action="?c=movie&a=liked&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
+                                <button type="submit" class="btn  btn-outline-danger me-2 text-white"  data-bs-toggle="Wath">Like</button>
+                            </form>
+                        <?php } else { ?>
+                            <form method="post" action="?c=movie&a=likeddelete&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
+                                <button type="submit" class="btn  btn-danger me-2 text-white"  data-bs-toggle="Wath">Liked</button>
+                            </form>
+                        <?php } ?>
+                    </div>
+                <?php }?>
+            </div>
         </div>
     </div>
 

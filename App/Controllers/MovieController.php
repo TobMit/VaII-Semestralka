@@ -58,6 +58,12 @@ class MovieController extends AControllerBase
                 $watched = 1;
             }
             $tmpArray[2] = $watched;
+            $tmpLiked = Wllists::getAll("username = ? and typ = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(), 'l', $this->request()->getValue('id'), $this->request()->getValue('type')]);
+            $liked = 0;
+            if (count($tmpLiked) !== 0) {
+                $liked = 1;
+            }
+            $tmpArray[3] = $liked;
         }
         return $this->html($tmpArray,"title");
     }
@@ -84,6 +90,21 @@ class MovieController extends AControllerBase
     }
     public function watcheddelete() :Response {
         $tmpWatched = Wllists::getAll("username = ? and typ = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(), 'w',$this->request()->getValue('id'), $this->request()->getValue('type') ]);
+        $tmpWatched[0]->delete();
+        return $this->redirect("?c=movie&a=title&id=" . $this->request()->getValue('id') . "&type=" . $this->request()->getValue('type'));
+    }
+
+    public function liked() :Response {
+        $watchedMovie = new Wllists();
+        $watchedMovie->setTyp('l');
+        $watchedMovie->setUsername($this->app->getAuth()->getLoggedUserName());
+        $watchedMovie->setIdMovie($this->request()->getValue('id'));
+        $watchedMovie->setTypMovie($this->request()->getValue('type'));
+        $watchedMovie->save();
+        return $this->redirect("?c=movie&a=title&id=" . $this->request()->getValue('id') . "&type=" . $this->request()->getValue('type'));
+    }
+    public function likedDelete() :Response {
+        $tmpWatched = Wllists::getAll("username = ? and typ = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(), 'l',$this->request()->getValue('id'), $this->request()->getValue('type') ]);
         $tmpWatched[0]->delete();
         return $this->redirect("?c=movie&a=title&id=" . $this->request()->getValue('id') . "&type=" . $this->request()->getValue('type'));
     }
