@@ -90,15 +90,14 @@ class MovieController extends AControllerBase
     public function commentCreate() :Response {
         $tmpCommnet = new Comments();
         $postData = $this->app->getRequest()->getPost();
-        $postData['isSuccessfull'] = false;
-        /*
-        $tmpCommnet->setUsers($this.$this->app->getAuth()->getLoggedUserName());
+        $tmpCommnet->setUsers($this->app->getAuth()->getLoggedUserName());
         $tmpCommnet->setText($postData["text"]);
         $tmpCommnet->setIdMovie($postData["idMovie"]);
         $tmpCommnet->setTypMovie($postData["typMovie"]);
-        $tmpCommnet->create();*/
-        //return $this.$this->redirect("?c=movie&a=title&id=" . $postData["idMovie"] . "&type=" . $postData["typMovie"]);
-        $data = array(['isSuccessful' => false], ['text' => "ha text"]);
-        return $this->json($postData);
+        $tmpCommnet->create();
+        $returnData = array();
+        $returnData['isSuccess'] = true;
+
+        return $this->json($returnData);
     }
 }

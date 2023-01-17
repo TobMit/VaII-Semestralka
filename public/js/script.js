@@ -38,7 +38,7 @@ class MovieDB {
     async getMovies(url, type) {
         let res  = await this.fetchUrl(url);
         this.showMovies(res.results, type);
-        console.log(res.results);
+        //console.log(res.results);
     }
 
     showMovies(data, type) {
@@ -148,17 +148,21 @@ class MovieDB {
 
     async getForm() {
         let comment = document.getElementById("textAreaComment").value;
-        console.log(comment);
         let data = await fetch("?c=movie&a=commentCreate",
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: "POST",
-                body: 'message=5&message2=6'
+                body: "text=" + comment + "&idMovie=" + this.idMovie + "&typMovie=" + this.typMovie
 
             });
-        console.log(data);
-        console.log(data.json());
+        //console.log(data.json());
+
+        let dataJson = await data.json();
+        if (!dataJson.isSuccess) {
+            alert("Error saving comment");
+        }
+
     }
 }
