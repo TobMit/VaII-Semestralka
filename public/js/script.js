@@ -267,7 +267,7 @@ class MovieDB {
 
             });
         var jsonData = await data.json();
-        console.log(jsonData);
+        //console.log(jsonData);
         if (typeof jsonData.movieAverage === "undefined") {
             ratingText.innerText = 'none/5'
         } else {
