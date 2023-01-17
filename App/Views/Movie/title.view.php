@@ -100,7 +100,7 @@
                                             <h5 class="text-white">
                                                 <label class="form-label" for="textAreaComment">Add a comment</label>
                                             </h5>
-                                            <textarea required  class="form-control text-bg-dark" id="textAreaComment" rows="4" placeholder="What is your view?"></textarea>
+                                            <textarea required class="form-control text-bg-dark" id="textAreaComment" rows="4" placeholder="What is your view?"></textarea>
                                         </div>
                                         <div class="d-flex justify-content-end mt-3">
                                             <button onclick="movieDB.getForm()" type="button" class="btn btn-danger">
