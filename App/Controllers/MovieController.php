@@ -20,6 +20,7 @@ class MovieController extends AControllerBase
             case "title":
             case "search":
             case "getComments":
+            case "getRatingOnly":
                 return true;
             default:
                 return $this->app->getAuth()->isLogged();
@@ -178,5 +179,22 @@ class MovieController extends AControllerBase
             $newUserRating->create();
         }
         return $this->json();
+    }
+
+    public function getRatingOnly() :Response {
+        $averageRating = Ratings::getAll("idMovie = ? and typMovie = ?", [$this->app->getRequest()->getValue("idMovie"), $this->app->getRequest()->getValue("typMovie")]);
+
+        $returnData = array();
+        $average = 0;
+        if (count($averageRating) != 0) {
+            foreach ($averageRating as $ratings) {
+                $average += $ratings->getRating();
+            }
+            $returnData['movieAverage'] = $average / count($averageRating);
+        } else {
+            $returnData['movieAverage'] = 0;
+        }
+        return $this->json($returnData);
+        //return $this->json();
     }
 }

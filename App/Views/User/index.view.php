@@ -10,10 +10,10 @@
 
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class=" border-danger border-bottom">
-        <h1 class="text-center" >Your liked movie</h1>
+        <h1 class="text-center" >Your liked movies</h1>
     </div>
 </div>
-<div class="row justify-content-evenly" id="sugestedMoviesSerials">
+<div class="row justify-content-evenly" id="likedMovies">
 
     <div class="col-md-2 border rounded-4 m-1 ">
         <a href="?c=movie&a=title">
@@ -44,10 +44,10 @@
 
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class=" border-danger border-bottom">
-        <h1 class="text-center" >Your Watch-list</h1>
+        <h1 class="text-center" >Your watched movies</h1>
     </div>
 </div>
-<div class="row justify-content-evenly" id="sugestedCollection">
+<div class="row justify-content-evenly" id="watchedMovies">
 
     <div class="col-md-2 border rounded-4 m-1 ">
         <a href="?c=movie&a=title">
@@ -75,3 +75,8 @@
     </div>
 
 </div>
+
+<script>
+    movieDB.showLikedMovie();
+    movieDB.showWatchedMovie();
+</script>

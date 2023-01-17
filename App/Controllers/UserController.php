@@ -6,6 +6,7 @@ use App\Config\Configuration;
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
 use App\Models\Users;
+use App\Models\Wllists;
 use mysql_xdevapi\Exception;
 
 class UserController extends AControllerBase
@@ -73,5 +74,18 @@ class UserController extends AControllerBase
         }
         //$this->redirect("?c=user&a=password");
         return $this->html($data, "password");
+    }
+
+    public function getLikedMovie() :Response {
+        $tmpWatched = Wllists::getAll("username = ? and typ = ?", [$this->app->getAuth()->getLoggedUserName(), 'w']);
+        $returnData = array();
+        $data = array();
+        foreach ($tmpWatched as $wllists) {
+            array_push($data, array('typMovie' => $wllists->getTypMovie(), 'idMovie' => $wllists->getIdMovie()));
+            //array_push($data, array('typMovie' => "test1", 'idMovie' => "test2"));
+        }
+        $returnData['size'] = count($data);
+        $returnData['results'] = $data;
+        return $this->json($returnData);
     }
 }

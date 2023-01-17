@@ -245,7 +245,7 @@ class MovieDB {
 
             });
         var jsonData = await data.json();
-        console.log(jsonData);
+        //console.log(jsonData);
         if (typeof jsonData.movieAverage === "undefined") {
             ratingText.innerText = 'none/5'
         } else {
@@ -253,5 +253,68 @@ class MovieDB {
         }
         ratingSelelect.value = jsonData.userSelected;
 
+    }
+
+    async showOnlyRating() {
+        let ratingText = document.getElementById("ratingText");
+        let data = await fetch("?c=movie&a=getRatingOnly",
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: "POST",
+                body: "idMovie=" + this.idMovie + "&typMovie=" + this.typMovie
+
+            });
+        var jsonData = await data.json();
+        console.log(jsonData);
+        if (typeof jsonData.movieAverage === "undefined") {
+            ratingText.innerText = 'none/5'
+        } else {
+            ratingText.innerText = jsonData.movieAverage + "/5";
+        }
+
+    }
+
+    async showLikedMovie() {
+        let likedMovie = document.getElementById("likedMovies");
+        likedMovie.innerHTML="";
+        /*
+        let data = await fetch("?c=user&a=getLikedMovie",
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: "POST",
+                body: "idMovie=" + this.idMovie + "&typMovie=" + this.typMovie
+
+            });
+        var jsonData = await data.json();
+        console.log(jsonData);
+
+
+        for (let i = 0; i < jsonData.size; i++) {
+            let url;
+            if (jsonData.typMovie === "movie") {
+                url = BASE_URL + FILM_URL + id + "?" + API_KEY_URL;
+            } else {
+                url = BASE_URL + SERIAL_URL + id + "?" + API_KEY_URL;
+            }
+            let data = await this.fetchUrl(url);
+            likedMovie.innerHTML += `<div class="col-md-2 border rounded-4 m-1 ">\n` +
+                `        <a href="?c=movie&a=title&id=${id}&type=${type}">\n` +
+                `            <img class="image w-100 rounded-4 mt-3" src="${IMG_URL+poster_path}" alt="${nazov}">\n` +
+                `        </a>\n` +
+                `        <div class="nazov text-center text-white">\n` +
+                `            ${nazov}\n` +
+                `        </div>\n` +
+                `    </div> `;
+        }
+        */
+    }
+
+    async showWatchedMovie() {
+        let watchedMovie = document.getElementById("watchedMovies");
+        watchedMovie.innerHTML = "";
     }
 }

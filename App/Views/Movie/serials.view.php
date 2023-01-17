@@ -4,8 +4,8 @@
 </script>
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="border-danger border-bottom">
-        <h1>List of Serials</h1>
-        <p>Looking for a specific serial? Make it easier with our filter. </p>
+        <h1>List of Serials popular this week</h1>
+        <!--<p>Looking for a specific serial? Make it easier with our filter. </p>
         <div class="row justify-content-evenly pb-1 mx-auto">
             <div class="col-md-3 p-1">
                 <select class="form-select text-bg-dark customSelect" aria-label="ChooseGenre">
@@ -46,7 +46,7 @@
             <div class="col-lg-2 p-1">
                 <a class="btn btn-outline-danger me-2 text-white " href="?c=movie&a=serials">Filter reset</a>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 <div class="row justify-content-evenly" id="sugestedMoviesSerials">
