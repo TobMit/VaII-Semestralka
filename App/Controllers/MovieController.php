@@ -113,7 +113,7 @@ class MovieController extends AControllerBase
     public function commentCreate() :Response {
         $tmpCommnet = new Comments();
         $tmpCommnet->setUsers($this->app->getAuth()->getLoggedUserName());
-        if (!preg_match(Configuration::REGEX_SEARCH, $this->app->getRequest()->getValue("commentText"))) {
+        if (preg_match(Configuration::REGEX_SEARCH, $this->app->getRequest()->getValue("commentText"))) {
             $tmpCommnet->setText($this->app->getRequest()->getValue("commentText"));
             $tmpCommnet->setIdMovie($this->app->getRequest()->getValue("idMovie"));
             $tmpCommnet->setTypMovie($this->app->getRequest()->getValue("typMovie"));

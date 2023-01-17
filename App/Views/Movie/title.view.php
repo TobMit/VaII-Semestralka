@@ -24,6 +24,7 @@
                 </div>
 
                 <div class="col-4 ms-1">
+                    <?php if ($auth->isLogged()) { ?>
                         <p class="mb-0 text-secondary">Your Rating</p>
                         <select class="form-select text-bg-dark customSelect" aria-label="ChooseRating" id="ratingSelect">
                             <option value="0">none</option>
@@ -33,6 +34,7 @@
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
+                    <?php } ?>
                 </div>
             </div>
 
@@ -98,7 +100,7 @@
                                             <h5 class="text-white">
                                                 <label class="form-label" for="textAreaComment">Add a comment</label>
                                             </h5>
-                                            <textarea class="form-control text-bg-dark" id="textAreaComment" rows="4" placeholder="What is your view?"></textarea>
+                                            <textarea required  class="form-control text-bg-dark" id="textAreaComment" rows="4" placeholder="What is your view?"></textarea>
                                         </div>
                                         <div class="d-flex justify-content-end mt-3">
                                             <button onclick="movieDB.getForm()" type="button" class="btn btn-danger">
@@ -147,6 +149,8 @@
 <script>
     movieDB.findMovieById("<?php echo $data[0]?>", "<?php echo $data[1]?>" )
     movieDB.getComments();
+    <?php if ($auth->isLogged()) { ?>
     movieDB.ratingHandler();
+    <?php } ?>
 </script>
 

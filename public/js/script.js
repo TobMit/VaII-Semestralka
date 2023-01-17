@@ -148,6 +148,9 @@ class MovieDB {
 
     async getForm() {
         let comment = document.getElementById("textAreaComment").value;
+        if (comment.length < 5) {
+            return;
+        }
         let data = await fetch("?c=movie&a=commentCreate",
             {
                 headers: {
