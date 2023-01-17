@@ -6,6 +6,7 @@ use App\Config\Configuration;
 use App\Core\Responses\Response;
 use App\Core\AControllerBase;
 use App\Models\Comments;
+use App\Models\Ratings;
 use App\Models\Wllists;
 
 class MovieController extends AControllerBase
@@ -135,5 +136,29 @@ class MovieController extends AControllerBase
         $returnData['arrSize'] = count($arrayComment);
         $returnData['results'] = $arrayComment;
         return $this->json($returnData);
+    }
+
+    public function getRating() :Response {
+        $tmpUserRating = Ratings::getAll("user = ? and idMovie = ? and typMovie = ?", [$this->app->getAuth()->getLoggedUserName(),$this->app->getRequest()->getValue("idMovie"), $this->app->getRequest()->getValue("typMovie")]);
+        $averageRating = Ratings::getAll("idMovie = ? and typMovie = ?", [$this->app->getRequest()->getValue("idMovie"), $this->app->getRequest()->getValue("typMovie")]);
+
+        $returnData = array();
+        if ($tmpUserRating[0]->getRating() >= 1) {
+            $returnData['userSelected'] = $tmpUserRating[0]->getRating();
+        } else {
+            $returnData['userSelected'] = 0;
+        }
+        $average = 0;
+        foreach ($averageRating as $ratings) {
+            $average += $ratings->getRating();
+        }
+        $returnData['movieAverage'] = $average / count($averageRating);
+        //return $this->json($returnData);
+        return $this->json();
+    }
+
+    public function setRating() :Response {
+
+        return $this->json();
     }
 }

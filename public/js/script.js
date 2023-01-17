@@ -176,7 +176,7 @@ class MovieDB {
 
             });
         let dataJson = await data.json();
-        console.log(dataJson);
+        //console.log(dataJson);
         if (!dataJson.isSuccess) {
             alert("Error saving comment");
         } else {
@@ -189,7 +189,7 @@ class MovieDB {
         let comments = document.getElementById("commentPlace");
         comments.innerHTML="";
         for (let i = 0; i < size; i++) {
-            console.log(data[i]);
+            //console.log(data[i]);
             comments.innerHTML +=
                 `<div class="d-flex flex-start mb-3">
                         <div class="card w-100">
@@ -205,5 +205,41 @@ class MovieDB {
                         </div>
                     </div>`
         }
+    }
+
+    ratingHandler() {
+        let ratingText = document.getElementById("ratingText");
+        let ratingSelelect = document.querySelector("#ratingSelect");
+        ratingSelelect.addEventListener('change', () => {
+            this.#processRating(ratingText, ratingSelelect, ratingSelelect.options[ratingSelelect.selectedIndex].value);
+        });
+        this.#showRating(ratingText, ratingSelelect)
+    }
+
+    //privatna metoda
+    async #processRating(ratingText, ratingSelelect, ratingSelectedValue) {
+        await fetch("?c=movie&a=setRating",
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                method: "POST",
+                body: "userSelected=" + ratingSelectedValue
+
+            });
+
+        this.#showRating(ratingText, ratingSelelect);
+    }
+
+    async #showRating(ratingText, ratingSelelect) {
+        let data = await fetch("?c=movie&a=getRating");
+        console.log(data);
+        if (typeof data.movieAverage === "undefined") {
+            ratingText.innerText = 'none/5'
+        } else {
+            ratingText.innerText = data.movieAverage + "/5";
+        }
+        ratingSelelect.value = data.userSelected;
+
     }
 }

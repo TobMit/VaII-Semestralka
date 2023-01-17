@@ -2,10 +2,6 @@
 /** @var Array $data */
 /** @var \App\Core\IAuthenticator $auth */
 ?>
-<script>
-    movieDB.findMovieById("<?php echo $data[0]?>", "<?php echo $data[1]?>" )
-    movieDB.getComments();
-</script>
 <div class="container mt-3 mb-1 pt-3 pb-3 rounded-2 mineHeader">
     <div class="row  border-danger border-bottom pb-3 m-1">
         <div class="col-md-4" id="moviePoster">
@@ -18,9 +14,31 @@
 
             </div>
 
-            <div class="row">
+            <div class="row justify-content-start mb-3">
+                <div class="col-4 ju">
+                    <p class="mb-0 text-secondary">MovieDB Rating</p>
+                    <div class="row">
+                        <div class="col-1 "><img src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png" height="30" alt="rating hviezda"></div>
+                        <div class="col-1 mt-1 ms-3"><h5 class="text-light" id="ratingText"></h5></div>
+                    </div>
+                </div>
+
+                <div class="col-4 ms-1">
+                        <p class="mb-0 text-secondary">Your Rating</p>
+                        <select class="form-select text-bg-dark customSelect" aria-label="ChooseRating" id="ratingSelect">
+                            <option value="0">none</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                </div>
+            </div>
+
+            <div class="row justify-content-end">
                 <?php if ($auth->isLogged()) { ?>
-                    <div class="m-1 col-2">
+                    <div class="col-3 ps-5">
                         <?php if ($data[2] === 0) { ?>
                         <form method="post" action="?c=movie&a=watched&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
                             <button type="submit" class="btn  btn-outline-success me-2 text-white"  data-bs-toggle="Wath">Seen</button>
@@ -31,7 +49,7 @@
                             </form>
                         <?php } ?>
                     </div>
-                    <div class="m-1 col-2">
+                    <div class="col-3">
                         <?php if ($data[3] === 0) { ?>
                             <form method="post" action="?c=movie&a=liked&id=<?php echo $data[0] ?>&type=<?php echo $data[1] ?>">
                                 <button type="submit" class="btn  btn-outline-danger me-2 text-white"  data-bs-toggle="Wath">Like</button>
@@ -45,24 +63,6 @@
                 <?php }?>
             </div>
 
-            <div class="row">
-                <div class="m-1 col-4">
-                    <p class="mb-0 text-secondary">Rating</p>
-                    <select class="form-select text-bg-dark customSelect" aria-label="ChooseRating">
-                        <option selected>none</option>
-                        <option class="text-decoration-line-through"></option>
-                        <option value="1">1 <img src="https://pngimg.com/uploads/red_star/red_star_PNG31.png" height="40"></option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-1 m-0 ms-2"><img src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-icon.png" height="20" class="me-2"></div>
-                <div class="col-1 mt-1 p-0"><p class="text-secondary">3/5</p></div>
-            </div>
 
         </div>
     </div>
@@ -143,4 +143,10 @@
 
     </div>
 </div>
+
+<script>
+    movieDB.findMovieById("<?php echo $data[0]?>", "<?php echo $data[1]?>" )
+    movieDB.getComments();
+    movieDB.ratingHandler();
+</script>
 
